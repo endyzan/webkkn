@@ -1,45 +1,116 @@
-// Smooth scroll untuk navigasi
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Mobile Menu Toggle
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
+        document.getElementById('mainMenu')?.classList.toggle('show');
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (!targetElement) return;
+
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
             });
-        }
+
+            document.getElementById('mainMenu')?.classList.remove('show');
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            this.classList.add('active');
+        });
     });
-});
 
-// Form submission
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Terima kasih! Pesan Anda telah dikirim. Kami akan segera menghubungi Anda.');
-        this.reset();
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            this.classList.add('active');
+            document.getElementById(tabId)?.classList.add('active');
+        });
     });
-}
 
-// Animasi saat scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+    // Active nav on scroll
+    window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        let currentSection = '';
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
+        sections.forEach(section => {
+            if (pageYOffset >= section.offsetTop - 100) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+                link.classList.add('active');
+            }
+        });
     });
-}, observerOptions);
 
-document.querySelectorAll('.stat-card, .org-card, .gallery-item, .announcement-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'all 0.6s ease-out';
-    observer.observe(el);
+    // Dropdown mobile
+    document.querySelectorAll('.dropdown-toggle').forEach(item => {
+        item.addEventListener('click', function (e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.nextElementSibling?.classList.toggle('active');
+            }
+        });
+    });
+
+    // ================= CHAT =================
+    const chatToggle = document.getElementById("chatToggle");
+    const chatPopup = document.getElementById("chatPopup");
+    const chatClose = document.getElementById("chatClose");
+    const chatSend = document.getElementById("chatSend");
+    const chatInput = document.getElementById("chatInput");
+    const chatBody = document.querySelector(".chat-body");
+
+    if (chatToggle && chatPopup) {
+        chatToggle.onclick = () => chatPopup.style.display = "flex";
+    }
+
+    if (chatClose) {
+        chatClose.onclick = () => chatPopup.style.display = "none";
+    }
+
+    if (chatSend) {
+        chatSend.onclick = sendMessage;
+    }
+
+    if (chatInput) {
+        chatInput.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") sendMessage();
+        });
+    }
+
+    function sendMessage() {
+        if (!chatInput || !chatBody) return;
+
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        const userMsg = document.createElement("div");
+        userMsg.className = "chat-message user";
+        userMsg.innerHTML = `<p>${message}</p>`;
+        userMsg.querySelector("p").style.background = "#c8f7c5";
+
+        chatBody.appendChild(userMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        chatInput.value = "";
+    }
+
 });
