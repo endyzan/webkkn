@@ -1,427 +1,390 @@
-<?php include 'includes/header.php'; ?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Desa Brakas Dejeh</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h2>Selamat Datang di Website Resmi Desa Brakas Dajah</h2>
-            <p>Desa yang kaya akan budaya, sejarah, dan potensi pertanian. Terletak di Kecamatan Modung, Kabupaten Bangkalan, Provinsi Jawa Timur.</p>
-            <a href="#profile" class="btn" style="background-color: var(--accent); color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; display: inline-block; font-weight: 500;">Pelajari Selengkapnya</a>
-        </div>
-    </section>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="./assets/img/logonew.png" alt="Logo Desa" />
+      <div class="text">
+        <strong> Desa Brakas Dejeh</strong><br />
+        Kabupaten Bangkalan
+      </div>
+    </div>
+    <div class="nav-right">
+      <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="./pages/profil-desa.php">Profil Desa</a></li>
+        <li><a href="#">Listing</a></li>
+        <li><a href="#">IDM</a></li>
+        <li><a href="#">Berita</a></li>
+        <li><a href="#">Belanja</a></li>
+        <li><a href="#">PPID</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Dusun</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">-</div>
-                    <div class="stat-label">Jumlah Penduduk</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">-</div>
-                    <div class="stat-label">Kepala Keluarga</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">69166</div>
-                    <div class="stat-label">Kode Pos</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Profile Section -->
-    <section id="profile">
-        <div class="container">
-            <div class="section-title">
-                <h2>Profil Desa</h2>
-            </div>
-            <div class="profile-content">
-                <div class="card">
-                    <h3>Sejarah Desa</h3>
-                    <p>Brakas Dajah awal mulanya dulu tidak ada, Brakas terletak yang sekarang jadi Desa Modung. Brakas yang dulu jadi Dusun Brakas Laok Desa Modung dan pecahan dari desa Brakas jadi Brakas Dajah yang dulunya Dusun Takabuh.</p>
-                    <p>Nama Takabuh sendiri dari sesepuh perempuan yang bernama 'Nyai Kabuh' dan bersuami seorang ulama bernama 'Syeh Abdul Alam' Bujuk Brakas. Di Takabuh ada pandai besi yang cukup terkenal di Pulau Madura, namanya 'Arek Takabuan' (Celurit Takabuh). Pandai besinya terkenal yang bernama 'Mbah Kai Sebakti'.</p>
-                    <p>Kepemimpinan di Desa Brakas turun temurun dari tahun 2003-sekarang (23 tahun).</p>
-                </div>
-                <div class="card">
-                    <h3>Visi & Misi Desa</h3>
-                    <h4>Visi:</h4>
-                    <p>Membangun pendidikan yang lebih baik, membangun dan memperbaiki sarana pendidikan.</p>
-                    
-                    <h4>Misi:</h4>
-                    <ul>
-                        <li>Meningkatkan kualitas pendidikan dasar dan menengah</li>
-                        <li>Membangun fasilitas pendidikan yang memadai</li>
-                        <li>Meningkatkan partisipasi masyarakat dalam dunia pendidikan</li>
-                        <li>Menyediakan sarana prasarana pendidikan yang layak</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>Informasi Umum</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                    <div>
-                        <p><strong>Nama Desa:</strong> Brakas Dajah</p>
-                        <p><strong>Kecamatan:</strong> Modung</p>
-                        <p><strong>Kabupaten:</strong> Bangkalan</p>
-                        <p><strong>Provinsi:</strong> Jawa Timur</p>
-                    </div>
-                    <div>
-                        <p><strong>Alamat Kantor Desa:</strong> Jl. Brakas Dajah</p>
-                        <p><strong>Kode Pos:</strong> 69166</p>
-                        <p><strong>Luas Wilayah:</strong> - km²</p>
-                        <p><strong>Batas Wilayah:</strong> -</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Government Section -->
-    <section id="government" style="background-color: #f5f5f5;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Pemerintahan Desa</h2>
-            </div>
-            
-            <div class="card">
-                <h3>Struktur Kepemimpinan Turun Temurun</h3>
-                <p>Kepemimpinan di Desa Brakas Dajah memiliki sejarah panjang yang turun temurun:</p>
-                <ul style="margin-left: 20px; margin-top: 15px;">
-                    <li>Klebon Brakas yang pertama: "Al Widin"</li>
-                    <li>Diteruskan saudaranya: "Muh Anwar"</li>
-                    <li>Digantikan keponakannya: "Abdul Hamid bin Alwidin"</li>
-                    <li>Digantikan anaknya Abdul Hamid: "Muh Awi bin Abdul Hamid"</li>
-                    <li>Digantikan anaknya lagi: "Muh Muni bin Muawi"</li>
-                    <li>Digantikan keponakannya: "Bahrudin"</li>
-                    <li>Menjabat dari tahun 2003 - sekarang (23 tahun)</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h3>Perangkat Desa</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nama Perangkat Desa</th>
-                            <th>Jabatan</th>
-                            <th>Periode</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Bahrudin</td>
-                            <td>Kepala Desa</td>
-                            <td>2003 - Sekarang</td>
-                        </tr>
-                        <tr>
-                            <td>-</td>
-                            <td>Sekretaris Desa</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>-</td>
-                            <td>Kaur Keuangan</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>-</td>
-                            <td>Kaur Umum</td>
-                            <td>-</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="card">
-                <h3>Wilayah Administratif</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nama Dusun</th>
-                            <th>Kepala Dusun</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Takabuh Dajah</td>
-                            <td>Bapak Mathari</td>
-                        </tr>
-                        <tr>
-                            <td>Takabuh Tengah</td>
-                            <td>Bapak Saruin</td>
-                        </tr>
-                        <tr>
-                            <td>Takabuh Timur</td>
-                            <td>Bapak Romli</td>
-                        </tr>
-                        <tr>
-                            <td>Takabuh Barat</td>
-                            <td>Bapak Toyip</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Statistics Section -->
-    <section id="statistics">
-        <div class="container">
-            <div class="section-title">
-                <h2>Data & Statistik</h2>
-            </div>
-            
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="tab1">Kependudukan</button>
-                <button class="tab-btn" data-tab="tab2">Demografi</button>
-                <button class="tab-btn" data-tab="tab3">Wilayah</button>
-            </div>
-            
-            <div class="tab-content active" id="tab1">
-                <div class="chart-container">
-                    <h3>Data Kependudukan Desa Brakas Dajah</h3>
-                    <div class="chart-placeholder">
-                        Data kependudukan akan ditampilkan dalam bentuk grafik
-                    </div>
-                    <div style="margin-top: 30px;">
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                            <div class="stat-item">
-                                <div class="stat-number">-</div>
-                                <div class="stat-label">Jumlah Penduduk Total</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">-</div>
-                                <div class="stat-label">Jumlah Penduduk Laki-laki</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">-</div>
-                                <div class="stat-label">Jumlah Penduduk Perempuan</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">-</div>
-                                <div class="stat-label">Jumlah Kepala Keluarga</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab2">
-                <div class="chart-container">
-                    <h3>Data Demografi</h3>
-                    <div class="chart-placeholder">
-                        Data demografi (kelompok umur, tingkat pendidikan, status perkawinan) akan ditampilkan dalam bentuk grafik
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="tab3">
-                <div class="chart-container">
-                    <h3>Data Wilayah Administratif</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Dusun</th>
-                                <th>Jumlah RT</th>
-                                <th>Jumlah RW</th>
-                                <th>Jumlah Penduduk</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Takabuh Dajah</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>Takabuh Tengah</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>Takabuh Timur</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>Takabuh Barat</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Potency Section -->
-    <section id="potency" style="background-color: #f5f5f5;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Potensi Desa</h2>
-            </div>
-            
-            <div class="potency-grid">
-                <div class="potency-item">
-                    <div class="potency-icon">
-                        <i class="fas fa-tractor"></i>
-                    </div>
-                    <h3>Pertanian</h3>
-                    <p>Desa Brakas Dajah memiliki potensi pertanian yang meliputi: padi, jagung, kacang, dan cabai. Hasil pertanian diproduksi sendiri dan disimpan di lubung.</p>
-                </div>
-                
-                <div class="potency-item">
-                    <div class="potency-icon">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <h3>UMKM</h3>
-                    <p>UMKM yang berkembang di desa ini antara lain toko kelontong dan usaha jualan sate yang menjadi salah satu kuliner khas.</p>
-                </div>
-                
-                <div class="potency-item">
-                    <div class="potency-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Produk Unggulan</h3>
-                    <p>Produk unggulan desa adalah mangga (pao) ketika musim dan nangka yang menjadi komoditas andalan.</p>
-                </div>
-                
-                <div class="potency-item">
-                    <div class="potency-icon">
-                        <i class="fas fa-hammer"></i>
-                    </div>
-                    <h3>Kerajinan Tradisional</h3>
-                    <p>Desa ini terkenal dengan kerajinan celurit Takabuh yang dibuat oleh pandai besi tradisional "Arek Takabuan".</p>
-                </div>
-            </div>
-            
-            <div class="card" style="margin-top: 40px;">
-                <h3>Warisan Budaya & Sejarah</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px;">
-                    <div>
-                        <h4><i class="fas fa-mask"></i> Tandek Topeng</h4>
-                        <p>Tradisi tandek topek dilakukan saat panen tiba, namun sekarang sudah tidak lagi beroperasi.</p>
-                    </div>
-                    <div>
-                        <h4><i class="fas fa-landmark"></i> Makam Sesepuh</h4>
-                        <p>Makam sesepuh desa yaitu Syeh Abdul Alam yang memiliki nilai sejarah penting bagi masyarakat.</p>
-                    </div>
-                    <div>
-                        <h4><i class="fas fa-history"></i> Sejarah Pandai Besi</h4>
-                        <p>Pandai besi terkenal bernama Mbah Kai Sebakti yang meninggal di Mekkah.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Kontak & Layanan</h2>
-            </div>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div>
-                        <h4>Alamat Kantor Desa</h4>
-                        <p>Jl. Brakas Dajah, Desa Brakas Dajah<br>Kec. Modung, Kab. Bangkalan<br>Jawa Timur, Kode Pos: 69166</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div>
-                        <h4>Telepon</h4>
-                        <p>(031) 123456 (Kantor Desa)</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                        <h4>Email</h4>
-                        <p>brakasdajah@desa.id</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div>
-                        <h4>Jam Pelayanan</h4>
-                        <p>Senin - Jumat: 08.00 - 15.00 WIB</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card" style="margin-top: 40px;">
-                <h3>Layanan Desa</h3>
-                <p>Desa Brakas Dajah menyediakan berbagai layanan masyarakat, antara lain:</p>
-                <ul style="margin-left: 20px; margin-top: 15px;">
-                    <li>Pembuatan dan perbaikan KTP</li>
-                    <li>Pembuatan dan perbaikan KK (Kartu Keluarga)</li>
-                    <li>Surat keterangan usaha</li>
-                    <li>Surat keterangan tidak mampu</li>
-                    <li>Surat pengantar lainnya</li>
-                </ul>
-            </div>
-            
-            <div class="card" style="margin-top: 30px;">
-                <h3>Lokasi Kantor Desa</h3>
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12391.976456830771!2d112.93889060718332!3d-7.168431538702688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd81e31e7229e27%3A0xf6fb06135eadf3bb!2sBrakas%20Dajah%2C%20Kec.%20Modung%2C%20Kabupaten%20Bangkalan%2C%20Jawa%20Timur!5e1!3m2!1sid!2sid!4v1767955299689!5m2!1sid!2sid"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Floating Chat Button -->
-    <div class="chat-float" id="chatToggle">
-        <i class="fas fa-comments"></i>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Selamat Datang</h1>
+      <h2>Website Resmi  Desa Brakas Dejeh</h2>
+      <p>
+        Sumber informasi terbaru tentang pemerintahan dan kegiatan
+        masyarakat di  Desa Brakas Dejeh.
+      </p>
     </div>
 
-    <!-- Chat Popup -->
-    <div class="chat-popup" id="chatPopup">
-        <div class="chat-header">
-            <span>Chat Desa Brakas Dajah</span>
-            <button id="chatClose">&times;</button>
-        </div>
-        <div class="chat-body">
-            <div class="chat-message admin">
-                <p>Halo 👋 Ada yang bisa kami bantu?</p>
-            </div>
-        </div>
-        <div class="chat-footer">
-            <input type="text" placeholder="Ketik pesan..." id="chatInput">
-            <button id="chatSend">Kirim</button>
-        </div>
+
+  </section>
+
+  <!-- JELAJAHI DESA -->
+  <section class="jelajahi">
+    <div class="jelajahi-left">
+      <h2>JELAJAHI DESA</h2>
+      <p>
+        Melalui website ini Anda dapat menjelajahi segala hal yang terkait
+        dengan desa. Aspek pemerintahan, penduduk, demografi, potensi desa,
+        dan juga berita tentang desa.
+      </p>
     </div>
 
-<?php include 'includes/footer.php'; ?>
+    <div class="jelajahi-right">
+      <a href="profil-desa.html" class="card">
+        <div class="icon">🏛️</div>
+        <span>PROFIL DESA</span>
+      </a>
+      <a href="infografis.html" class="card">
+        <div class="icon">📈</div>
+        <span>INFOGRAFIS</span>
+      </a>
+      <a href="idm.html" class="card">
+        <div class="icon">👍</div>
+        <span>IDM</span>
+      </a>
+      <a href="ppid.html" class="card">
+        <div class="icon">📄</div>
+        <span>PPID</span>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- SAMBUTAN KEPALA DESA -->
+  <section class="sambutan">
+    <div class="sambutan-container">
+      <div class="sambutan-image">
+        <img src="./assets/img/logonew.png" alt="Lambang Kabupaten Bangkalan" />
+      </div>
+      <div class="sambutan-content">
+        <h2>Sambutan Kepala Desa Brakas Dejeh</h2>
+        <h3>BAHRUDIN</h3>
+        <span class="jabatan">Kepala  Desa Brakas Dejeh</span>
+        <div class="sambutan-text">
+          <p><strong>Assalamu Alaikum Warohmatullahi Wabarakatu.</strong></p>
+          <p>
+            Website ini hadir sebagai wujud transformasi  Desa Brakas Dejeh menjadi desa
+            yang mampu memanfaatkan teknologi informasi dan komunikasi, terintegrasi
+            ke dalam sistem online. Keterbukaan informasi publik, pelayanan publik
+            dan kegiatan perekonomian di desa, guna mewujudkan  Desa Brakas Dejeh sebagai
+            desa wisata yang berkelanjutan, adaptasi dan mitigasi terhadap perubahan
+            iklim serta menjadi desa yang mandiri.
+          </p>
+          <p>
+            Terima kasih kepada semua pihak yang telah banyak memberi dukungan dan
+            kontribusi baik berupa tenaga, pikiran maupun doa demi kemajuan Desa
+            brakas dajah tercinta.
+            ada semua pihak yang telah banyak memberi dukungan dan
+            kontribusi baik berupa tenaga, pikiran maupun doa demi kemajuan Desa
+            brakas dajah tercinta.
+            ada semua pihak yang telah banyak memberi dukungan dan
+            kontribusi baik berupa tenaga, pikiran maupun doa demi kemajuan Desa
+            brakas dajah tercinta.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOTK -->
+  <section class="sotk">
+    <div class="sotk-header">
+      <h2>SOTK</h2>
+      <p>Struktur Organisasi dan Tata Kerja  Desa Brakas Dejeh</p>
+    </div>
+
+    <div class="sotk-cards">
+      <div class="sotk-card">
+        <img src="./assets/img/abdulrohman.jpeg" alt="aa" />
+        <div class="sotk-info">
+          <strong>aa</strong>
+          <span>Kaur Keuangan</span>
+        </div>
+      </div>
+
+      <div class="sotk-card">
+        <img src="./assets/img/abdulrohman.jpeg" alt="aa" />
+        <div class="sotk-info">
+          <strong>aa</strong>
+          <span>Kepala Seksi Pelayanan dan Kesejahteraan</span>
+        </div>
+      </div>
+
+      <div class="sotk-card">
+        <img src="./assets/img/abdulrohman.jpeg" alt="aa aaa" />
+        <div class="sotk-info">
+          <strong>aa aaa</strong>
+          <span>Kaur Umum dan Perencanaan</span>
+        </div>
+      </div>
+
+      <div class="sotk-card">
+        <img src="./assets/img/abdulrohman.jpeg" alt="aa" />
+        <div class="sotk-info">
+          <strong>aa</strong>
+          <span>Kasi Pemerintahan</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sotk-more">
+      <a href="struktur-organisasi.html">📋 LIHAT STRUKTUR LEBIH LENGKAP</a>
+    </div>
+  </section>
+
+<!-- ADMINISTRASI PENDUDUK -->
+<section class="administrasi">
+  <div class="administrasi-header">
+    <h2>Administrasi Penduduk</h2>
+    <p>
+      Sistem digital yang berfungsi mempermudah pengelolaan data dan informasi
+      terkait dengan kependudukan dan pendayagunaannya untuk pelayanan publik
+      yang efektif dan efisien
+    </p>
+  </div>
+
+  <div class="administrasi-grid">
+    <div class="admin-box">
+      <span class="angka">1.161</span>
+      <span class="label">Penduduk</span>
+    </div>
+    <div class="admin-box">
+      <span class="angka">607</span>
+      <span class="label">Laki-Laki</span>
+    </div>
+
+    <div class="admin-box">
+      <span class="angka">309</span>
+      <span class="label">Kepala Keluarga</span>
+    </div>
+    <div class="admin-box">
+      <span class="angka">554</span>
+      <span class="label">Perempuan</span>
+    </div>
+
+    <div class="admin-box">
+      <span class="angka">97</span>
+      <span class="label">Penduduk Sementara</span>
+    </div>
+    <div class="admin-box">
+      <span class="angka">44</span>
+      <span class="label">Mutasi Penduduk</span>
+    </div>
+  </div>
+</section>
+
+<!-- APB DESA -->
+<section class="apb-desa">
+  <div class="apb-container">
+
+    <div class="apb-left">
+      <img src="./assets/img/konten-apb.png" alt="APB Desa">
+    </div>
+
+    <div class="apb-right">
+      <h2>APB DESA 2025</h2>
+      <p class="apb-desc">
+        Akses cepat dan transparan terhadap APB Desa serta proyek pembangunan
+      </p>
+
+      <div class="apb-card">
+        <span class="apb-label">Pendapatan Desa</span>
+        <strong>Rp4.254.715.300,00</strong>
+      </div>
+
+      <div class="apb-card">
+        <span class="apb-label">Belanja Desa</span>
+        <strong>Rp4.235.654.388,00</strong>
+      </div>
+
+      <a href="apb-desa.html" class="apb-link">
+        📊 LIHAT DATA LEBIH LENGKAP
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- BERITA DESA -->
+<section class="berita">
+  <div class="berita-header">
+    <h2>Berita Desa</h2>
+    <p>
+      Menyajikan informasi terbaru tentang peristiwa, berita terkini, dan
+      artikel-artikel jurnalistik dari Desa Brakas Dejeh
+    </p>
+  </div>
+
+  <div class="berita-grid">
+
+    <!-- Card -->
+    <article class="berita-card">
+      <img src="../assets/img/hero-bg.jpeg" alt="Berita Desa">
+      <div class="berita-content">
+        <h3>POKDARWIS PANTAI BIRU KERSIK TERIMA BANTUAN GAZEBO DARI BANK...</h3>
+        <p>
+          Kersik – Kelompok Sadar Wisata (POKDARWIS) Pantai Biru
+          Kersik menerima bantuan 10 (sepuluh) unit gazebo dari Bank...
+        </p>
+
+        <div class="berita-meta">
+          <span>👁 Dilihat 60 kali</span>
+          <span class="tanggal">18 Dec 2025</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="berita-card">
+      <img src="../assets/img/hero-bg.jpeg" alt="Berita Desa">
+      <div class="berita-content">
+        <h3>KEGIATAN GOTONG ROYONG WARGA RT.002 DESA KERSIK MELALUI BKKM RT</h3>
+        <p>
+          Kersik – Warga RT.002 Desa Kersik, Kecamatan Marang Kayu,
+          Kabupaten Kutai Kartanegara, melaksanakan kegiatan gotong royong...
+        </p>
+
+        <div class="berita-meta">
+          <span>👁 Dilihat 75 kali</span>
+          <span class="tanggal">18 Dec 2025</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="berita-card">
+      <img src="../assets/img/hero-bg.jpeg" alt="Berita Desa">
+      <div class="berita-content">
+        <h3>RT DI DESA KERSIK TINGKATKAN PENJAGAAN KEAMANAN LINGKUNGAN</h3>
+        <p>
+          Kersik – Dalam upaya menciptakan lingkungan yang aman, tertib,
+          dan kondusif, Ketua RT bersama warga Desa Kersik...
+        </p>
+
+        <div class="berita-meta">
+          <span>👁 Dilihat 67 kali</span>
+          <span class="tanggal">18 Dec 2025</span>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="berita-more">
+    <a href="berita.html">📰 LIHAT BERITA LEBIH BANYAK</a>
+  </div>
+</section>
+
+<!-- PETA DESA -->
+<section class="peta-desa">
+  <div class="peta-container">
+
+    <div class="peta-header">
+      <h2>Peta Desa</h2>
+      <p>
+        Lokasi dan wilayah administratif Desa Brakas Dejeh, Kecamatan Modung,
+        Kabupaten Bangkalan, Jawa Timur
+      </p>
+    </div>
+
+    <div class="peta-wrapper">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15051.118686145122!2d112.94018931304178!3d-7.166352228672062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd81e31e7229e27%3A0xf6fb06135eadf3bb!2sBrakas%20Dajah%2C%20Kec.%20Modung%2C%20Kabupaten%20Bangkalan%2C%20Jawa%20Timur!5e1!3m2!1sid!2sid!4v1768202844000!5m2!1sid!2sid"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Kolom 1 -->
+    <div class="footer-col">
+      <div class="footer-logo">
+        <img src="../assets/img/logonew.png" alt="Logo Desa">
+        <h3>Pemerintah Desa Brakas Dejeh</h3>
+      </div>
+      <p>
+        Jalan Langseng Dusun Empang RT.003<br>
+        Desa Brakas Dejeh, Kecamatan Modung,<br>
+        Kabupaten Bangkalan<br>
+        Provinsi Jawa Timur, 69166
+      </p>
+      <p><strong>Kode Wilayah:</strong> 35.26.17.2005</p>
+    </div>
+
+    <!-- Kolom 2 -->
+    <div class="footer-col">
+      <h4>Hubungi Kami</h4>
+      <ul class="footer-list">
+        <li>📞 082150208664</li>
+        <li>✉️ brakasdejeh@bangkalankab.go.id</li>
+      </ul>
+
+      <div class="footer-social">
+        <a href="#">🌐</a>
+        <a href="#">📘</a>
+        <a href="#">🐦</a>
+        <a href="#">▶️</a>
+        <a href="#">🎵</a>
+      </div>
+    </div>
+
+    <!-- Kolom 3 -->
+    <div class="footer-col">
+      <h4>Nomor Telepon Penting</h4>
+      <ul class="footer-list">
+        <li><a href="#">Jumadi / Kades Brakas Dejeh</a></li>
+        <li><a href="#">Yayan / Ambulan Desa</a></li>
+      </ul>
+    </div>
+
+    <!-- Kolom 4 -->
+    <div class="footer-col">
+      <h4>Jelajahi</h4>
+      <ul class="footer-list">
+        <li><a href="#">Website Kemendesa</a></li>
+        <li><a href="#">Website Kemendagri</a></li>
+        <li><a href="#">Website Kabupaten Bangkalan</a></li>
+        <li><a href="#">Cek DPT Online</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Pemerintah Desa Brakas Dejeh. KKN 2025/2026.
+  </div>
+</footer>
+
+
+</body>
+</html>
