@@ -1,5 +1,6 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "brakasdejeh");
+$conn = mysqli_connect("localhost", "root", "", "desa_brakas");
+
 if (!$conn) {
-    die("Koneksi gagal");
+    die("Koneksi database gagal!");
 }

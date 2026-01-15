@@ -1,3 +1,10 @@
+<?php
+include './db.php';
+$s = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT * FROM sambutan WHERE status='aktif' LIMIT 1")
+);
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,26 +16,35 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <img src="./assets/img/logonew.png" alt="Logo Desa" />
-      <div class="text">
-        <strong> Desa Brakas Dejeh</strong><br />
-        Kabupaten Bangkalan
-      </div>
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="./assets/img/logonew.png" alt="Logo Desa" />
+    <div class="text">
+      <strong>Desa Brakas Dejeh</strong><br />
+      Kabupaten Bangkalan
     </div>
-    <div class="nav-right">
-      <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="./pages/profil-desa.php">Profil Desa</a></li>
-        <li><a href="#">Listing</a></li>
-        <li><a href="#">IDM</a></li>
-        <li><a href="#">Berita</a></li>
-        <li><a href="#">Belanja</a></li>
-        <li><a href="#">PPID</a></li>
-      </ul>
-    </div>
-  </nav>
+  </div>
+
+  <div class="nav-right">
+    <ul class="nav-menu">
+      <li><a href="./index.php">Home</a></li>
+      <li><a href="./pages/profil-desa.php">Profil Desa</a></li>
+
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Infografis</a>
+        <ul class="dropdown-menu">
+          <li><a href="./pages/infografis/penduduk.php">Penduduk</a></li>
+          <li><a href="./pages/infografis/apbdes.php">APBDes</a></li>
+          <li><a href="./pages/infografis/bansos.php">Bansos</a></li>
+        </ul>
+      </li>
+
+      <li><a href="./pages/berita.php">Berita</a></li>
+      <li><a href="./pages/galeri.php">Galeri</a></li>
+    </ul>
+  </div>
+</nav>
+
 
   <!-- HERO -->
   <section class="hero">
@@ -56,17 +72,17 @@
     </div>
 
     <div class="jelajahi-right">
-      <a href="profil-desa.html" class="card">
+      <a href="./pages/profil-desa.php" class="card">
         <div class="icon">🏛️</div>
         <span>PROFIL DESA</span>
       </a>
-      <a href="infografis.html" class="card">
+      <a href="./pages/infografis/penduduk.php" class="card">
         <div class="icon">📈</div>
         <span>INFOGRAFIS</span>
       </a>
       <a href="idm.html" class="card">
         <div class="icon">👍</div>
-        <span>IDM</span>
+        <span>APBDes</span>
       </a>
       <a href="ppid.html" class="card">
         <div class="icon">📄</div>
@@ -80,33 +96,14 @@
   <section class="sambutan">
     <div class="sambutan-container">
       <div class="sambutan-image">
-        <img src="./assets/img/logonew.png" alt="Lambang Kabupaten Bangkalan" />
+        <img src="./uploads/sambutan/<?= $s['foto']; ?>" alt="Lambang Kabupaten Bangkalan">
       </div>
       <div class="sambutan-content">
         <h2>Sambutan Kepala Desa Brakas Dejeh</h2>
-        <h3>BAHRUDIN</h3>
-        <span class="jabatan">Kepala  Desa Brakas Dejeh</span>
+        <h3><?= $s['nama_kades']; ?></h3>
+        <small><?= $s['jabatan']; ?></small>
         <div class="sambutan-text">
-          <p><strong>Assalamu Alaikum Warohmatullahi Wabarakatu.</strong></p>
-          <p>
-            Website ini hadir sebagai wujud transformasi  Desa Brakas Dejeh menjadi desa
-            yang mampu memanfaatkan teknologi informasi dan komunikasi, terintegrasi
-            ke dalam sistem online. Keterbukaan informasi publik, pelayanan publik
-            dan kegiatan perekonomian di desa, guna mewujudkan  Desa Brakas Dejeh sebagai
-            desa wisata yang berkelanjutan, adaptasi dan mitigasi terhadap perubahan
-            iklim serta menjadi desa yang mandiri.
-          </p>
-          <p>
-            Terima kasih kepada semua pihak yang telah banyak memberi dukungan dan
-            kontribusi baik berupa tenaga, pikiran maupun doa demi kemajuan Desa
-            brakas dajah tercinta.
-            ada semua pihak yang telah banyak memberi dukungan dan
-            kontribusi baik berupa tenaga, pikiran maupun doa demi kemajuan Desa
-            brakas dajah tercinta.
-            ada semua pihak yang telah banyak memberi dukungan dan
-            kontribusi baik berupa tenaga, pikiran maupun doa demi kemajuan Desa
-            brakas dajah tercinta.
-          </p>
+          <p><?= nl2br($s['isi']); ?></p>
         </div>
       </div>
     </div>
@@ -223,7 +220,7 @@
         <strong>Rp4.235.654.388,00</strong>
       </div>
 
-      <a href="apb-desa.html" class="apb-link">
+      <a href="./pages/infografis/apbdes.php" class="apb-link">
         📊 LIHAT DATA LEBIH LENGKAP
       </a>
     </div>
@@ -294,7 +291,7 @@
   </div>
 
   <div class="berita-more">
-    <a href="berita.html">📰 LIHAT BERITA LEBIH BANYAK</a>
+    <a href="./pages/berita.php">📰 LIHAT BERITA LEBIH BANYAK</a>
   </div>
 </section>
 
@@ -329,7 +326,7 @@
     <!-- Kolom 1 -->
     <div class="footer-col">
       <div class="footer-logo">
-        <img src="../assets/img/logonew.png" alt="Logo Desa">
+        <img src="./assets/img/logonew.png" alt="Logo Desa">
         <h3>Pemerintah Desa Brakas Dejeh</h3>
       </div>
       <p>
@@ -385,6 +382,8 @@
   </div>
 </footer>
 
+
+<script src="./assets/js/scripts.js"></script>
 
 </body>
 </html>

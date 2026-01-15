@@ -5,486 +5,211 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Profil Desa - Desa Brakas Dejeh</title>
   <link rel="stylesheet" href="../assets/css/style.css">
-  <style>
-    /* Tambahan styling khusus untuk halaman profil */
-    .profil-desa {
-      padding: 100px 80px 80px;
-      background: #ffffff;
-    }
-    
-    .profil-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    
-    .profil-header h1 {
-      color: #6cc24a;
-      font-size: 36px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-    
-    .profil-header p {
-      color: #666;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-    
-    .profil-content {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    /* Visi dan Misi */
-    .visi-misi {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 40px;
-      margin-bottom: 40px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-    
-    .visi-container, .misi-container {
-      margin-bottom: 30px;
-    }
-    
-    .visi-title, .misi-title {
-      color: #8b0000;
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 15px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #6cc24a;
-      display: flex;
-      align-items: center;
-    }
-    
-    .visi-title:before, .misi-title:before {
-      content: "🎯";
-      margin-right: 10px;
-      font-size: 20px;
-    }
-    
-    .misi-title:before {
-      content: "📋";
-    }
-    
-    .visi-text {
-      font-size: 18px;
-      line-height: 1.8;
-      color: #333;
-      font-style: italic;
-      padding-left: 20px;
-      border-left: 3px solid #6cc24a;
-      margin-left: 10px;
-    }
-    
-    .misi-list {
-      list-style: none;
-      padding-left: 0;
-    }
-    
-    .misi-list li {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 15px;
-      padding: 12px 15px;
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
-    }
-    
-    .misi-list li:hover {
-      transform: translateX(5px);
-    }
-    
-    .misi-number {
-      background: #6cc24a;
-      color: white;
-      font-weight: bold;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 15px;
-      flex-shrink: 0;
-    }
-    
-    .misi-text {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #333;
-    }
-    
-    /* Sejarah dan Geografi */
-    .sejarah-geografi {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-    
-    .sejarah-box, .geografi-box {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-    
-    .section-title {
-      color: #8b0000;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .sejarah-box .section-title:before {
-      content: "📜";
-      margin-right: 10px;
-    }
-    
-    .geografi-box .section-title:before {
-      content: "🗺️";
-      margin-right: 10px;
-    }
-    
-    .sejarah-text, .geografi-text {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #333;
-    }
-    
-    .sejarah-text p, .geografi-text p {
-      margin-bottom: 15px;
-    }
-    
-    /* Demografi */
-    .demografi {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 30px;
-      margin-bottom: 40px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-    
-    .demografi .section-title:before {
-      content: "👥";
-      margin-right: 10px;
-    }
-    
-    .demografi-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      margin-top: 20px;
-    }
-    
-    .stat-box {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    }
-    
-    .stat-number {
-      display: block;
-      font-size: 26px;
-      font-weight: 800;
-      color: #6cc24a;
-      margin-bottom: 5px;
-    }
-    
-    .stat-label {
-      font-size: 14px;
-      color: #555;
-    }
-    
-    /* Potensi Desa */
-    .potensi-desa {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-    
-    .potensi-desa .section-title:before {
-      content: "🌟";
-      margin-right: 10px;
-    }
-    
-    .potensi-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 20px;
-    }
-    
-    .potensi-card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
-    }
-    
-    .potensi-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .potensi-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
-      display: block;
-    }
-    
-    .potensi-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: #8b0000;
-      margin-bottom: 10px;
-    }
-    
-    .potensi-desc {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.5;
-    }
-    
-    /* Tombol kembali */
-    .back-button {
-      text-align: center;
-      margin-top: 50px;
-    }
-    
-    .back-button a {
-      display: inline-block;
-      background: #6cc24a;
-      color: white;
-      padding: 12px 30px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: background 0.3s ease;
-    }
-    
-    .back-button a:hover {
-      background: #5aa83a;
-    }
-    
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .profil-desa {
-        padding: 100px 40px 60px;
-      }
-      
-      .sejarah-geografi {
-        grid-template-columns: 1fr;
-      }
-      
-      .demografi-stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .potensi-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .profil-desa {
-        padding: 100px 20px 40px;
-      }
-      
-      .visi-misi, .sejarah-box, .geografi-box, .demografi, .potensi-desa {
-        padding: 20px;
-      }
-      
-      .demografi-stats {
-        grid-template-columns: 1fr;
-      }
-      
-      .potensi-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .profil-header h1 {
-        font-size: 28px;
-      }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
+    <!-- NAVBAR -->
   <nav class="navbar">
     <div class="nav-left">
-      <img src="./assets/img/logonew.png" alt="Logo Desa" />
+      <img src="../assets/img/logonew.png" alt="Logo Desa" />
       <div class="text">
-        <strong> Desa Brakas Dejeh</strong><br />
+        <strong>Desa Brakas Dejeh</strong><br />
         Kabupaten Bangkalan
       </div>
     </div>
+
     <div class="nav-right">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#" style="text-decoration: underline;">Profil Desa</a></li>
-        <li><a href="#">Listing</a></li>
-        <li><a href="#">IDM</a></li>
-        <li><a href="#">Berita</a></li>
-        <li><a href="#">Belanja</a></li>
-        <li><a href="#">PPID</a></li>
+      <ul class="nav-menu">
+        <li><a href="../index.php">Home</a></li>
+        <li><a href="./profil-desa.php">Profil Desa</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">Infografis</a>
+          <ul class="dropdown-menu">
+            <li><a href="./infografis/penduduk.php">Penduduk</a></li>
+            <li><a href="./infografis/apbdes.php">APBDes</a></li>
+            <li><a href="./infografis/bansos.php">Bansos</a></li>
+          </ul>
+        </li>
+
+        <li><a href="./berita.php">Berita</a></li>
+        <li><a href="./Galeri.php">Galeri</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- PROFIL DESA -->
-  <section class="profil-desa">
-    <div class="profil-header">
-      <h1>Profil Desa Brakas Dejeh</h1>
-      <p>Desa Brakas Dejeh adalah sebuah desa di Kecamatan Modung, Kabupaten Bangkalan, Provinsi Jawa Timur. Desa ini memiliki berbagai potensi dan kekayaan budaya yang menjadi ciri khas masyarakatnya.</p>
-    </div>
-    
-    <div class="profil-content">
-      <!-- VISI DAN MISI -->
-      <div class="visi-misi">
-        <div class="visi-container">
-          <h2 class="visi-title">Visi Desa</h2>
-          <div class="visi-text">
-            "Desa Kersik sebagai Desa Wisata yang mampu mengelola potensi Desa dan pembangunan berkelanjutan untuk mewujudkan masyarakat yang sejahtera"
-          </div>
-        </div>
-        
-        <div class="misi-container">
-          <h2 class="misi-title">Misi Desa</h2>
-          <ul class="misi-list">
-            <li>
-              <div class="misi-number">1</div>
-              <div class="misi-text">Mewujudkan tata kelola pemerintahan yang baik</div>
-            </li>
-            <li>
-              <div class="misi-number">2</div>
-              <div class="misi-text">Mengembangkan kegiatan keagamaan</div>
-            </li>
-            <li>
-              <div class="misi-number">3</div>
-              <div class="misi-text">Meningkatkan kualitas pendidikan dan sumber daya manusia</div>
-            </li>
-            <li>
-              <div class="misi-number">4</div>
-              <div class="misi-text">Mengembangkan teknologi informasi</div>
-            </li>
-            <li>
-              <div class="misi-number">5</div>
-              <div class="misi-text">Pembangunan infrastruktur, sarana dan prasarana</div>
-            </li>
-          </ul>
-        </div>
+  <!-- PROFIL DESA - VISI MISI -->
+  <section class="profil-visimisi">
+    <div class="visimisi-container">
+
+      <!-- VISI -->
+      <div class="visimisi-card">
+        <h2>Visi</h2>
+        <p>
+          “Desa Kersik sebagai Desa Wisata yang mampu mengelolah potensi Desa dan
+          pembangunan berkelanjutan untuk mewujudkan masyarakat yang sejahtera”
+        </p>
       </div>
-      
-      <!-- SEJARAH DAN GEOGRAFI -->
-      <div class="sejarah-geografi">
-        <div class="sejarah-box">
-          <h2 class="section-title">Sejarah Desa</h2>
-          <div class="sejarah-text">
-            <p>Desa Brakas Dejeh memiliki sejarah panjang yang bermula dari sekelompok masyarakat yang membuka lahan dan menetap di wilayah ini. Nama "Brakas Dejeh" berasal dari bahasa Madura yang memiliki makna filosofis tentang semangat kebersamaan dan gotong royong.</p>
-            <p>Sejak berdiri, Desa Brakas Dejeh telah dipimpin oleh beberapa kepala desa yang memberikan kontribusi dalam pembangunan dan kemajuan desa. Masyarakat desa dikenal dengan semangat kegotongroyongan yang tinggi dalam setiap aspek kehidupan.</p>
-          </div>
-        </div>
-        
-        <div class="geografi-box">
-          <h2 class="section-title">Geografi Desa</h2>
-          <div class="geografi-text">
-            <p>Desa Brakas Dejeh terletak di Kecamatan Modung, Kabupaten Bangkalan, Provinsi Jawa Timur. Desa ini memiliki luas wilayah sekitar 250 hektar yang terdiri dari area pemukiman, persawahan, dan lahan perkebunan.</p>
-            <p>Desa ini berbatasan dengan:
-              <br>- Sebelah Utara: Desa ...
-              <br>- Sebelah Selatan: Desa ...
-              <br>- Sebelah Timur: Desa ...
-              <br>- Sebelah Barat: Desa ...
-            </p>
-            <p>Topografi desa berupa dataran rendah dengan ketinggian rata-rata 10-50 meter di atas permukaan laut.</p>
-          </div>
-        </div>
+
+      <!-- MISI -->
+      <div class="visimisi-card">
+        <h2>Misi</h2>
+        <ol>
+          <li>Mewujudkan tata kelola pemerintahan yang baik</li>
+          <li>Mengembangkan kegiatan keagamaan</li>
+          <li>Meningkatkan kualitas pendidikan dan sumber daya manusia</li>
+          <li>Mengembangkan teknologi informasi</li>
+          <li>Pembangunan infrastruktur, sarana dan prasarana</li>
+        </ol>
       </div>
-      
-      <!-- DEMOGRAFI -->
-      <div class="demografi">
-        <h2 class="section-title">Demografi Penduduk</h2>
-        <div class="demografi-stats">
-          <div class="stat-box">
-            <span class="stat-number">1.161</span>
-            <span class="stat-label">Total Penduduk</span>
-          </div>
-          <div class="stat-box">
-            <span class="stat-number">607</span>
-            <span class="stat-label">Laki-laki</span>
-          </div>
-          <div class="stat-box">
-            <span class="stat-number">554</span>
-            <span class="stat-label">Perempuan</span>
-          </div>
-          <div class="stat-box">
-            <span class="stat-number">309</span>
-            <span class="stat-label">Kepala Keluarga</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- POTENSI DESA -->
-      <div class="potensi-desa">
-        <h2 class="section-title">Potensi Desa</h2>
-        <div class="potensi-grid">
-          <div class="potensi-card">
-            <span class="potensi-icon">🌾</span>
-            <h3 class="potensi-name">Pertanian</h3>
-            <p class="potensi-desc">Desa memiliki lahan pertanian subur dengan komoditas utama padi, jagung, dan kacang-kacangan.</p>
-          </div>
-          
-          <div class="potensi-card">
-            <span class="potensi-icon">🐟</span>
-            <h3 class="potensi-name">Perikanan</h3>
-            <p class="potensi-desc">Budidaya ikan air tawar seperti lele dan nila yang dikelola oleh kelompok tani desa.</p>
-          </div>
-          
-          <div class="potensi-card">
-            <span class="potensi-icon">🏺</span>
-            <h3 class="potensi-name">Kerajinan</h3>
-            <p class="potensi-desc">Pengrajin gerabah dan anyaman bambu yang menjadi produk unggulan desa.</p>
-          </div>
-          
-          <div class="potensi-card">
-            <span class="potensi-icon">🌴</span>
-            <h3 class="potensi-name">Pariwisata</h3>
-            <p class="potensi-desc">Potensi wisata alam dan budaya dengan panorama persawahan yang indah.</p>
-          </div>
-          
-          <div class="potensi-card">
-            <span class="potensi-icon">🍯</span>
-            <h3 class="potensi-name">Produk Lokal</h3>
-            <p class="potensi-desc">Madu hutan dan gula aren sebagai produk lokal yang memiliki nilai ekonomi.</p>
-          </div>
-          
-          <div class="potensi-card">
-            <span class="potensi-icon">🏛️</span>
-            <h3 class="potensi-name">Budaya</h3>
-            <p class="potensi-desc">Kesenian tradisional Madura seperti Ludruk dan Saronen yang masih dilestarikan.</p>
-          </div>
-        </div>
-      </div>
-      
-      <!-- TOMBOL KEMBALI -->
-      <div class="back-button">
-        <a href="index.html">Kembali ke Beranda</a>
-      </div>
+
     </div>
   </section>
+
+  <!-- BAGAN DESA -->
+  <section class="bagan-desa">
+    <div class="bagan-container">
+
+      <h2>Bagan Desa</h2>
+
+      <div class="bagan-grid">
+
+        <!-- Struktur Pemerintahan Desa -->
+        <div class="bagan-item">
+          <h3>Struktur Organisasi Pemerintahan Desa</h3>
+          <img src="../assets/img/hero-bg.jpeg"
+              alt="Struktur Organisasi Pemerintahan Desa"
+              class="bagan-thumb"
+              onclick="openImage(this.src)">
+        </div>
+
+        <!-- Struktur BPD -->
+        <div class="bagan-item">
+          <h3>Struktur Organisasi Badan Permusyawaratan Desa</h3>
+          <img src="../assets/img/abdulrohman.jpeg"
+              alt="Struktur Organisasi Badan Permusyawaratan Desa"
+              class="bagan-thumb"
+              onclick="openImage(this.src)">
+        </div>
+      </div>
+    </div>
+
+      <!-- IMAGE MODAL -->
+    <div id="imageModal" class="image-modal">
+      <span class="close-modal" onclick="closeImage()">×</span>
+      <img id="modalImage" src="" alt="Preview Gambar">
+    </div>
+  </section>
+
+
+  <!-- SEJARAH DESA -->
+  <section class="sejarah-desa">
+    <div class="sejarah-container">
+
+      <h2>Sejarah Desa</h2>
+
+      <div class="sejarah-card">
+
+        <!-- FOTO SEJARAH -->
+        <div class="sejarah-foto">
+          <img src="../assets/img/abdulrohman.jpeg"
+              alt="Sejarah Desa Brakas Dejeh"
+              class="sejarah-thumb"
+              onclick="openImage(this.src)">
+        </div>
+
+        <!-- TEKS SEJARAH -->
+        <div class="sejarah-text">
+          <p>
+            Desa Brakas Dejeh merupakan salah satu desa yang berada di wilayah
+            Kecamatan Modung, Kabupaten Bangkalan. Berdasarkan cerita turun-temurun
+            masyarakat setempat, nama Brakas Dejeh berasal dari kondisi geografis
+            desa yang dahulu dikenal sebagai wilayah pertanian dan ladang rakyat.
+          </p>
+
+          <p>
+            Pada awal berdirinya, Desa Brakas Dejeh dipimpin oleh tokoh masyarakat
+            yang memiliki peran penting dalam mengatur kehidupan sosial,
+            pemerintahan, serta adat istiadat desa. Seiring berjalannya waktu,
+            desa ini terus mengalami perkembangan, baik dari segi pemerintahan,
+            pembangunan infrastruktur, maupun peningkatan kualitas sumber daya
+            manusia.
+          </p>
+
+          <p>
+            Hingga saat ini, Desa Brakas Dejeh terus berkomitmen menjaga nilai-nilai
+            budaya lokal sekaligus mendorong pembangunan berkelanjutan demi
+            kesejahteraan masyarakat desa.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- PETA LOKASI DESA -->
+  <section class="peta-desa">
+    <div class="peta-container">
+
+      <h2>Peta Lokasi Desa</h2>
+
+      <div class="peta-card">
+
+        <!-- INFO DESA -->
+        <div class="peta-info">
+          <h4>Batas Desa:</h4>
+
+          <div class="batas-grid">
+            <div>
+              <strong>Utara</strong>
+              <p>Desa Santan Ulu dan Desa Santan Ilir</p>
+            </div>
+            <div>
+              <strong>Timur</strong>
+              <p>Selat Makassar</p>
+            </div>
+            <div>
+              <strong>Selatan</strong>
+              <p>Selat Makassar dan Desa Semangko</p>
+            </div>
+            <div>
+              <strong>Barat</strong>
+              <p>Desa Santan Ulu</p>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="peta-stat">
+            <p><strong>Luas Desa:</strong> 4.000.000 m²</p>
+            <p><strong>Jumlah Penduduk:</strong> 1.161 Jiwa</p>
+          </div>
+        </div>
+
+        <!-- MAP -->
+        <div class="peta-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15051.118686145122!2d112.94018931304178!3d-7.166352228672062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd81e31e7229e27%3A0xf6fb06135eadf3bb!2sBrakas%20Dajah%2C%20Kec.%20Modung%2C%20Kabupaten%20Bangkalan%2C%20Jawa%20Timur!5e1!3m2!1sid!2sid!4v1768202844000!5m2!1sid!2sid"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -493,7 +218,7 @@
       <!-- Kolom 1 -->
       <div class="footer-col">
         <div class="footer-logo">
-          <img src="./assets/img/logonew.png" alt="Logo Desa">
+          <img src="../assets/img/logonew.png" alt="Logo Desa">
           <h3>Pemerintah Desa Brakas Dejeh</h3>
         </div>
         <p>
@@ -535,10 +260,10 @@
       <div class="footer-col">
         <h4>Jelajahi</h4>
         <ul class="footer-list">
-          <li><a href="index.html">Beranda</a></li>
           <li><a href="#">Website Kemendesa</a></li>
           <li><a href="#">Website Kemendagri</a></li>
           <li><a href="#">Website Kabupaten Bangkalan</a></li>
+          <li><a href="#">Cek DPT Online</a></li>
         </ul>
       </div>
 
@@ -549,5 +274,7 @@
     </div>
   </footer>
 
-</body>
+  <script src="../assets/js/scripts.js"></script>
+
+  </body>
 </html>
