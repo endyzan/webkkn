@@ -1,6 +1,11 @@
 <?php
 include '../db.php';
-$data = mysqli_query($conn, "SELECT * FROM berita WHERE status='publish' ORDER BY id DESC");
+
+$sotk = mysqli_query($conn, "
+    SELECT * FROM sotk 
+    WHERE status='aktif' 
+    ORDER BY urutan ASC
+");
 ?>
 
 
@@ -9,7 +14,7 @@ $data = mysqli_query($conn, "SELECT * FROM berita WHERE status='publish' ORDER B
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Berita - Desa Brakas Dejeh</title>
+  <title>Profil Desa - Desa Brakas Dejeh</title>
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -39,37 +44,58 @@ $data = mysqli_query($conn, "SELECT * FROM berita WHERE status='publish' ORDER B
         </li>
 
         <li><a href="./berita.php">Berita</a></li>
-        <li><a href="./galeri.php">Galeri</a></li>
+        <li><a href="./Galeri.php">Galeri</a></li>
       </ul>
     </div>
   </nav>
 
 
-  <!-- BERITA DESA -->
-<section class="berita">
-  <div class="berita-header">
-    <h2>Berita Desa</h2>
-    <p>
-      Menyajikan informasi terbaru tentang peristiwa, berita terkini,
-      dan artikel-artikel jurnalistik dari Desa Brakas Dejeh.
+  <!-- BAGAN DESA -->
+<section class="bagan-desa2">
+  <div class="bagan-container2">
+
+    <h2>SOTK</h2>
+    <p class="bagan-desc2">
+      Struktur Organisasi dan Tata Kerja Pemerintah Desa Brakas Dejeh
     </p>
-  </div>
-
-  <div class="berita-grid">
-
-  <?php while($b = mysqli_fetch_assoc($data)): ?>
-  <div class="berita-card">
-    <img src="../uploads/berita/<?= $b['gambar'] ?>">
-    <div class="berita-content">
-      <h3><?= $b['judul'] ?></h3>
-      <p><?= substr(strip_tags($b['isi']),0,120) ?>...</p>
-      <div class="berita-meta">
-        <span><?= $b['penulis'] ?> • Dilihat <?= $b['dilihat'] ?> kali</span>
-        <span class="tanggal"><?= date('d M Y', strtotime($b['tanggal'])) ?></span>
+      <!-- Struktur Pemerintahan Desa -->
+      <div class="bagan-item2">
+        <img
+          src="../assets/img/hero-bg.jpeg"
+          alt="Struktur Organisasi dan Tata Kerja Desa Kersik"
+          class="bagan-thumb2"
+          onclick="openImage(this.src)">
       </div>
-    </div>
   </div>
-  <?php endwhile; ?>
+
+  <!-- IMAGE MODAL -->
+  <div id="imageModal" class="image-modal2">
+    <span class="close-modal2" onclick="closeImage()">×</span>
+    <img id="modalImage" src="" alt="Preview Gambar">
+  </div>
+</section>
+
+
+<!-- SOTK FULL -->
+<section class="sotk">
+  <div class="sotk-header">
+    <h2>APARAT PEMERINTAH DESA</h2>
+  </div>
+
+  <div class="sotk-cards">
+
+    <?php while($row = mysqli_fetch_assoc($sotk)): ?>
+      <div class="sotk-card">
+        <img 
+          src="../uploads/sotk/<?= $row['foto'] ?: 'default.png'; ?>" 
+          alt="<?= $row['nama']; ?>"
+        >
+        <div class="sotk-info">
+          <strong><?= strtoupper($row['nama']); ?></strong>
+          <span><?= $row['jabatan']; ?></span>
+        </div>
+      </div>
+    <?php endwhile; ?>
 
   </div>
 </section>
@@ -78,29 +104,8 @@ $data = mysqli_query($conn, "SELECT * FROM berita WHERE status='publish' ORDER B
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- FOOTER -->
+  
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
 

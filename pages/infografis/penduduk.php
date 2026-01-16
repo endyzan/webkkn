@@ -1,3 +1,11 @@
+<?php
+include '../../db.php';
+$p = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT * FROM penduduk ORDER BY id DESC LIMIT 1")
+);
+?>
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -40,10 +48,6 @@
 
 
 
-
-
-
-
     <!-- HERO INFOGRAFIS PENDUDUK -->
   <section class="hero-infografis">
     <div class="hero-container">
@@ -72,61 +76,62 @@
 
   
   <!-- STATISTIK PENDUDUK -->
-  <section class="stat-penduduk">
+<!-- ================= STATISTIK PENDUDUK ================= -->
+<section class="stat-penduduk">
     <div class="stat-container">
 
-      <h2>Jumlah Penduduk dan Kepala Keluarga</h2>
+        <h2>Jumlah Penduduk dan Kepala Keluarga</h2>
 
-      <div class="stat-grid">
+        <div class="stat-grid">
 
-        <!-- Total Penduduk -->
-        <div class="stat-card">
-          <div class="stat-icon">
-            <img src="../../assets/img/icon-total-penduduk.svg" alt="Total Penduduk">
-          </div>
-          <div class="stat-text">
-            <span>TOTAL PENDUDUK</span>
-            <strong>1.161 Jiwa</strong>
-          </div>
+            <!-- Total Penduduk -->
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <img src="../../assets/img/icon-total-penduduk.svg" alt="Total Penduduk">
+                </div>
+                <div class="stat-text">
+                    <span>TOTAL PENDUDUK</span>
+                    <strong><?= number_format($p['total_penduduk'] ?? 0) ?> Jiwa</strong>
+                </div>
+            </div>
+
+            <!-- Kepala Keluarga -->
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <img src="../../assets/img/icon-kepala-keluarga-penduduk.svg" alt="Kepala Keluarga">
+                </div>
+                <div class="stat-text">
+                    <span>KEPALA KELUARGA</span>
+                    <strong><?= number_format($p['kepala_keluarga'] ?? 0) ?> KK</strong>
+                </div>
+            </div>
+
+            <!-- Perempuan -->
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <img src="../../assets/img/icon-perempuan-penduduk.svg" alt="Perempuan">
+                </div>
+                <div class="stat-text">
+                    <span>PEREMPUAN</span>
+                    <strong><?= number_format($p['perempuan'] ?? 0) ?> Jiwa</strong>
+                </div>
+            </div>
+
+            <!-- Laki-laki -->
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <img src="../../assets/img/icon-laki-penduduk.svg" alt="Laki-laki">
+                </div>
+                <div class="stat-text">
+                    <span>LAKI-LAKI</span>
+                    <strong><?= number_format($p['laki_laki'] ?? 0) ?> Jiwa</strong>
+                </div>
+            </div>
+
         </div>
-
-        <!-- Kepala Keluarga -->
-        <div class="stat-card">
-          <div class="stat-icon">
-            <img src="../../assets/img/icon-kepala-keluarga-penduduk.svg" alt="Kepala Keluarga">
-          </div>
-          <div class="stat-text">
-            <span>KEPALA KELUARGA</span>
-            <strong>309 Jiwa</strong>
-          </div>
-        </div>
-
-        <!-- Perempuan -->
-        <div class="stat-card">
-          <div class="stat-icon">
-            <img src="../../assets/img/icon-perempuan-penduduk.svg" alt="Perempuan">
-          </div>
-          <div class="stat-text">
-            <span>PEREMPUAN</span>
-            <strong>554 Jiwa</strong>
-          </div>
-        </div>
-
-        <!-- Laki-laki -->
-        <div class="stat-card">
-          <div class="stat-icon">
-            <img src="../../assets/img/icon-laki-penduduk.svg" alt="Laki-laki">
-          </div>
-          <div class="stat-text">
-            <span>LAKI-LAKI</span>
-            <strong>607 Jiwa</strong>
-          </div>
-        </div>
-
-      </div>
 
     </div>
-  </section>
+</section>
 
 
 

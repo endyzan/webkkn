@@ -85,10 +85,13 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Desktop hover */
-.dropdown:hover .dropdown-menu {
-  display: block;
+/* Hover hanya desktop */
+@media (min-width: 769px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
 }
+
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
@@ -110,7 +113,7 @@
   .dropdown-menu {
     position: static;
     display: none;
-    background: #a00000;
+    background: #3a8807;
     margin-left: 10px;
   }
 
@@ -118,6 +121,42 @@
     display: block;
   }
 }
+
+
+
+/* ===== HAMBURGER ===== */
+/* ===============================
+   FORCE HAMBURGER FIX
+================================ */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  z-index: 9999;
+}
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block !important;
+  }
+
+  .nav-right {
+    display: none;
+    width: 100%;
+  }
+
+  .nav-right.active {
+    display: block;
+  }
+}
+
 
 
     /* ===== HERO ===== */
@@ -431,7 +470,6 @@
     }
 
 
-        /* ===== ADMINISTRASI PENDUDUK ===== */
 /* ===== ADMINISTRASI PENDUDUK ===== */
 .administrasi {
   padding: 80px;
@@ -916,7 +954,7 @@
 /* ===== BAGAN DESA ===== */
 .bagan-desa {
   background: #f6fbeF;
-  padding: 80px 24px;
+  padding: 140px 24px 80px; /* aman dari navbar fixed */
 }
 
 .bagan-container {
@@ -1005,6 +1043,122 @@
   color: #fff;
   cursor: pointer;
 }
+
+
+
+
+
+
+
+/* sotk =========================================== */
+.bagan-desa2 {
+  background: #f6fbeF;
+  padding: 140px 24px 80px; /* aman dari navbar fixed */
+}
+
+.bagan-desc2 {
+  padding-bottom: 20px;
+}
+.bagan-container2 {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.bagan-container2 h2 {
+  color: #6cc24a;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 36px;
+}
+
+
+.bagan-item2 {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+
+.bagan-item2 h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.bagan-item2 img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .bagan-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* bagan desa pop up */
+/* ===== THUMBNAIL (CROP OK) ===== */
+.bagan-thumb2 {
+  width: 100% !important;
+  height: 680px !important;   /* Desktop */
+  object-fit: cover !important;
+  object-position: center;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .bagan-thumb2 {
+    height: 260px !important; /* Mobile */
+  }
+}
+
+/* ===== IMAGE MODAL ===== */
+.image-modal2 {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-modal2 img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;    /* FULL tanpa crop */
+  background: #fff;
+  border-radius: 8px;
+}
+
+.close-modal2 {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ===== SEJARAH DESA ===== */

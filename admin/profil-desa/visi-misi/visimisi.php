@@ -14,11 +14,10 @@ $s = mysqli_fetch_assoc($data);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Sambutan</title>
+    <title>Profil desa - Visi & Misi</title>
     <link rel="stylesheet" href="../../../assets/admin/style.css">
 </head>
 <body>
-
 <div class="overlay" onclick="closeSidebar()"></div>
 
 <!-- SIDEBAR -->
@@ -29,18 +28,18 @@ $s = mysqli_fetch_assoc($data);
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Home ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../banner-hero/banner.php">Banner</a></li>
-                <li><a href="./sambutan.php">Sambutan</a></li>
-                <li><a href="../sotk/sotk.php">SOTK</a></li>
+                <li><a href="../../home/banner-hero/banner.php">Banner</a></li>
+                <li><a href="../../home/sambutan/sambutan.php">Sambutan</a></li>
+                <li><a href="../../home/sotk/sotk.php">SOTK</a></li>
             </ul>
         </li>
         
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Profil Desa ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../../profil-desa/visi-misi/visimisi.php">Visi & Misi</a></li>
-                <li><a href="../../profil-desa/bagan-desa/bagandesa.php">Bagan Desa</a></li>
-                <li><a href="../../profil-desa/sejarah-desa/sejarah.php">Sejarah Desa</a></li>
+                <li><a href="./visimisi.php">Visi & Misi</a></li>
+                <li><a href="../bagan-desa/bagandesa.php">Bagan Desa</a></li>
+                <li><a href="../sejarah-desa/sejarah.php">Sejarah Desa</a></li>
             </ul>
         </li>
         
@@ -63,51 +62,45 @@ $s = mysqli_fetch_assoc($data);
 <!-- MAIN -->
 <div class="main">
 
-    <!-- TOPBAR -->
-    <div class="topbar">
-        <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <h1>Sambutan Kepala Desa</h1>
-        <span>Halo, <?= $_SESSION['nama_admin']; ?></span>
-    </div>
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <h1>Visi & Misi</h1>
+    <span>Halo, <?= $_SESSION['nama_admin']; ?></span>
+  </div>
 
-    <!-- CARD FORM -->
-    <div class="card">
-        <form action="./sambutan_proses.php" method="POST" enctype="multipart/form-data">
+  <div class="card">
+    <form action="./visimisi_proses.php" method="POST" onsubmit="tinymce.triggerSave();">
 
-            <input type="hidden" name="id" value="<?= $s['id'] ?? '' ?>">
+      <input type="hidden" name="id" value="<?= $vm['id'] ?? '' ?>">
 
-            <label>Nama Kepala Desa</label>
-            <input type="text" name="nama_kades" value="<?= $s['nama_kades'] ?? '' ?>" required>
+      <label>Visi</label>
+      <textarea name="visi" required><?= $vm['visi'] ?? '' ?></textarea>
 
-            <label>Jabatan</label>
-            <input type="text" name="jabatan" value="<?= $s['jabatan'] ?? 'Kepala Desa' ?>">
+      <label>Misi</label>
+      <textarea name="misi" required><?= $vm['misi'] ?? '' ?></textarea>
 
-            <label>Foto</label>
-            <input type="file" name="foto">
-            <?php if (!empty($s['foto'])): ?>
-                <br>
-                <img src="../../../uploads/sambutan/<?= $s['foto']; ?>" width="120" style="margin-top:10px;border-radius:8px;">
-            <?php endif; ?>
-
-            <label>Isi Sambutan</label>
-            <textarea name="isi" rows="6" required><?= $s['isi'] ?? '' ?></textarea>
-
-            <button type="submit" style="margin-top:15px">Simpan</button>
-        </form>
-    </div>
+      <button type="submit" style="margin-top:15px">Simpan</button>
+    </form>
+  </div>
 
 </div>
+
 
 <script src="https://cdn.tiny.cloud/1/1bs7zobfm5rqmd45xvcbj36oedbxw6ke3eyzhpp3mn7dmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
 tinymce.init({
-    selector: 'textarea[name="isi"]',
+    selector: 'textarea[name="visi"], textarea[name="misi"]',
     height: 300,
     menubar: false,
     plugins: 'lists link image preview code',
     toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | preview',
-    branding: false
+    branding: false,
+    setup: function (editor) {
+        editor.on('change', function () {
+            tinymce.triggerSave(); // PENTING
+        });
+    }
 });
 </script>
 

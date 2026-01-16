@@ -6,15 +6,15 @@ if (!isset($_SESSION['admin'])) {
 }
 
 include '../../../db.php';
-$data = mysqli_query($conn, "SELECT * FROM sambutan WHERE status='aktif' LIMIT 1");
-$s = mysqli_fetch_assoc($data);
+
+$data = mysqli_query($conn, "SELECT * FROM sotk ORDER BY urutan ASC");
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Sambutan</title>
+    <title>Home - SOTK</title>
     <link rel="stylesheet" href="../../../assets/admin/style.css">
 </head>
 <body>
@@ -30,8 +30,8 @@ $s = mysqli_fetch_assoc($data);
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Home ▾</a>
             <ul class="dropdown-menu">
                 <li><a href="../banner-hero/banner.php">Banner</a></li>
-                <li><a href="./sambutan.php">Sambutan</a></li>
-                <li><a href="../sotk/sotk.php">SOTK</a></li>
+                <li><a href="../sambutan/sambutan.php">Sambutan</a></li>
+                <li><a href=".sotk.php">SOTK</a></li>
             </ul>
         </li>
         
@@ -66,51 +66,65 @@ $s = mysqli_fetch_assoc($data);
     <!-- TOPBAR -->
     <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <h1>Sambutan Kepala Desa</h1>
+        <h1>SOTK</h1>
         <span>Halo, <?= $_SESSION['nama_admin']; ?></span>
     </div>
 
-    <!-- CARD FORM -->
     <div class="card">
-        <form action="./sambutan_proses.php" method="POST" enctype="multipart/form-data">
+        <h3>Tambah Aparat Desa</h3>
 
-            <input type="hidden" name="id" value="<?= $s['id'] ?? '' ?>">
+        <form action="sotk_proses.php" method="POST" enctype="multipart/form-data">
 
-            <label>Nama Kepala Desa</label>
-            <input type="text" name="nama_kades" value="<?= $s['nama_kades'] ?? '' ?>" required>
+            <label>Nama</label>
+            <input type="text" name="nama" required>
 
             <label>Jabatan</label>
-            <input type="text" name="jabatan" value="<?= $s['jabatan'] ?? 'Kepala Desa' ?>">
+            <input type="text" name="jabatan" required>
+
+            <label>Urutan</label>
+            <input type="number" name="urutan" value="0">
 
             <label>Foto</label>
             <input type="file" name="foto">
-            <?php if (!empty($s['foto'])): ?>
-                <br>
-                <img src="../../../uploads/sambutan/<?= $s['foto']; ?>" width="120" style="margin-top:10px;border-radius:8px;">
-            <?php endif; ?>
 
-            <label>Isi Sambutan</label>
-            <textarea name="isi" rows="6" required><?= $s['isi'] ?? '' ?></textarea>
-
-            <button type="submit" style="margin-top:15px">Simpan</button>
+            <button type="submit" name="simpan">Simpan</button>
         </form>
     </div>
 
+
+
+    <div class="card">
+        <h3>Data Aparat Desa</h3>
+
+        <table class="table">
+            <tr>
+                <th>No</th>
+                <th>Foto</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Aksi</th>
+            </tr>
+
+            <?php $no=1; while($s = mysqli_fetch_assoc($data)): ?>
+            <tr>
+                <td><?= $no++; ?></td>
+                <td>
+                    <img src="../../../uploads/sotk/<?= $s['foto']; ?>" width="60">
+                </td>
+                <td><?= $s['nama']; ?></td>
+                <td><?= $s['jabatan']; ?></td>
+                <td>
+                    <a href="./sotk_hapus.php?id=<?= $s['id']; ?>" onclick="return confirm('Hapus data?')">Hapus</a>
+                </td>
+            </tr>
+            <?php endwhile; ?>
+        </table>
+    </div>
+
+
+
+
 </div>
-
-<script src="https://cdn.tiny.cloud/1/1bs7zobfm5rqmd45xvcbj36oedbxw6ke3eyzhpp3mn7dmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-<script>
-tinymce.init({
-    selector: 'textarea[name="isi"]',
-    height: 300,
-    menubar: false,
-    plugins: 'lists link image preview code',
-    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | preview',
-    branding: false
-});
-</script>
-
 
 <!-- JS -->
 <script>

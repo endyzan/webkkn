@@ -1,3 +1,21 @@
+<?php
+include '../db.php';
+
+/* VISI MISI */
+$data = mysqli_query($conn, "SELECT * FROM visi_misi WHERE status='aktif' LIMIT 1");
+$vm = mysqli_fetch_assoc($data);
+
+/* BAGAN DESA */
+$q = mysqli_query($conn, "SELECT * FROM bagan_desa WHERE status='aktif'");
+
+$sh = mysqli_query($conn, "SELECT * FROM sejarah_desa WHERE status='aktif' LIMIT 1");
+$sejarah = mysqli_fetch_assoc($sh);
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -45,108 +63,80 @@
       <!-- VISI -->
       <div class="visimisi-card">
         <h2>Visi</h2>
-        <p>
-          “Desa Kersik sebagai Desa Wisata yang mampu mengelolah potensi Desa dan
-          pembangunan berkelanjutan untuk mewujudkan masyarakat yang sejahtera”
-        </p>
+        <p><?= $vm['visi']; ?></p>
       </div>
 
       <!-- MISI -->
       <div class="visimisi-card">
         <h2>Misi</h2>
         <ol>
-          <li>Mewujudkan tata kelola pemerintahan yang baik</li>
-          <li>Mengembangkan kegiatan keagamaan</li>
-          <li>Meningkatkan kualitas pendidikan dan sumber daya manusia</li>
-          <li>Mengembangkan teknologi informasi</li>
-          <li>Pembangunan infrastruktur, sarana dan prasarana</li>
+          <?= $vm['misi']; ?>
         </ol>
       </div>
 
     </div>
   </section>
 
+
   <!-- BAGAN DESA -->
-  <section class="bagan-desa">
-    <div class="bagan-container">
+<!-- BAGAN DESA -->
+<section class="bagan-desa">
+  <div class="bagan-container">
 
-      <h2>Bagan Desa</h2>
+    <h2>Bagan Desa</h2>
 
-      <div class="bagan-grid">
+    <div class="bagan-grid">
 
-        <!-- Struktur Pemerintahan Desa -->
+      <?php while ($b = mysqli_fetch_assoc($q)) : ?>
         <div class="bagan-item">
-          <h3>Struktur Organisasi Pemerintahan Desa</h3>
-          <img src="../assets/img/hero-bg.jpeg"
-              alt="Struktur Organisasi Pemerintahan Desa"
-              class="bagan-thumb"
-              onclick="openImage(this.src)">
-        </div>
+          <h3><?= $b['judul']; ?></h3>
 
-        <!-- Struktur BPD -->
-        <div class="bagan-item">
-          <h3>Struktur Organisasi Badan Permusyawaratan Desa</h3>
-          <img src="../assets/img/abdulrohman.jpeg"
-              alt="Struktur Organisasi Badan Permusyawaratan Desa"
-              class="bagan-thumb"
-              onclick="openImage(this.src)">
+          <img src="../uploads/bagan/<?= $b['gambar']; ?>"
+               alt="<?= $b['judul']; ?>"
+               class="bagan-thumb"
+               onclick="openImage(this.src)">
         </div>
-      </div>
-    </div>
+      <?php endwhile; ?>
 
-      <!-- IMAGE MODAL -->
-    <div id="imageModal" class="image-modal">
-      <span class="close-modal" onclick="closeImage()">×</span>
-      <img id="modalImage" src="" alt="Preview Gambar">
     </div>
-  </section>
+  </div>
+
+  <!-- IMAGE MODAL -->
+  <div id="imageModal" class="image-modal">
+    <span class="close-modal" onclick="closeImage()">×</span>
+    <img id="modalImage" src="" alt="Preview Gambar">
+  </div>
+</section>
+
 
 
   <!-- SEJARAH DESA -->
-  <section class="sejarah-desa">
-    <div class="sejarah-container">
+<?php if ($sejarah): ?>
+<section class="sejarah-desa">
+  <div class="sejarah-container">
 
-      <h2>Sejarah Desa</h2>
+    <h2><?= $sejarah['judul']; ?></h2>
 
-      <div class="sejarah-card">
+    <div class="sejarah-card">
 
-        <!-- FOTO SEJARAH -->
-        <div class="sejarah-foto">
-          <img src="../assets/img/abdulrohman.jpeg"
-              alt="Sejarah Desa Brakas Dejeh"
-              class="sejarah-thumb"
-              onclick="openImage(this.src)">
-        </div>
+      <div class="sejarah-foto">
+        <img src="../uploads/sejarah/<?= $sejarah['foto']; ?>"
+             alt="<?= $sejarah['judul']; ?>"
+             class="sejarah-thumb"
+             onclick="openImage(this.src)">
+      </div>
 
-        <!-- TEKS SEJARAH -->
-        <div class="sejarah-text">
-          <p>
-            Desa Brakas Dejeh merupakan salah satu desa yang berada di wilayah
-            Kecamatan Modung, Kabupaten Bangkalan. Berdasarkan cerita turun-temurun
-            masyarakat setempat, nama Brakas Dejeh berasal dari kondisi geografis
-            desa yang dahulu dikenal sebagai wilayah pertanian dan ladang rakyat.
-          </p>
-
-          <p>
-            Pada awal berdirinya, Desa Brakas Dejeh dipimpin oleh tokoh masyarakat
-            yang memiliki peran penting dalam mengatur kehidupan sosial,
-            pemerintahan, serta adat istiadat desa. Seiring berjalannya waktu,
-            desa ini terus mengalami perkembangan, baik dari segi pemerintahan,
-            pembangunan infrastruktur, maupun peningkatan kualitas sumber daya
-            manusia.
-          </p>
-
-          <p>
-            Hingga saat ini, Desa Brakas Dejeh terus berkomitmen menjaga nilai-nilai
-            budaya lokal sekaligus mendorong pembangunan berkelanjutan demi
-            kesejahteraan masyarakat desa.
-          </p>
-        </div>
-
+      <div class="sejarah-text">
+        <?= $sejarah['isi']; ?>
       </div>
 
     </div>
-  </section>
+
+  </div>
+</section>
+<?php endif; ?>
+
+
 
 
 
@@ -165,19 +155,19 @@
           <div class="batas-grid">
             <div>
               <strong>Utara</strong>
-              <p>Desa Santan Ulu dan Desa Santan Ilir</p>
+              <p>Desa Pekadan Kec. Galis</p>
             </div>
             <div>
               <strong>Timur</strong>
-              <p>Selat Makassar</p>
+              <p>Desa Suwaan Kec. Modung</p>
             </div>
             <div>
               <strong>Selatan</strong>
-              <p>Selat Makassar dan Desa Semangko</p>
+              <p>Desa Modung Kec. Modung</p>
             </div>
             <div>
               <strong>Barat</strong>
-              <p>Desa Santan Ulu</p>
+              <p>Desa Karang Anyar Kec. Modung</p>
             </div>
           </div>
 
@@ -185,7 +175,7 @@
 
           <div class="peta-stat">
             <p><strong>Luas Desa:</strong> 4.000.000 m²</p>
-            <p><strong>Jumlah Penduduk:</strong> 1.161 Jiwa</p>
+            <!-- <p><strong>Jumlah Penduduk:</strong> 1.161 Jiwa</p> -->
           </div>
         </div>
 

@@ -14,11 +14,10 @@ $s = mysqli_fetch_assoc($data);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Sambutan</title>
+    <title>Infografis - Bansos</title>
     <link rel="stylesheet" href="../../../assets/admin/style.css">
 </head>
 <body>
-
 <div class="overlay" onclick="closeSidebar()"></div>
 
 <!-- SIDEBAR -->
@@ -29,9 +28,9 @@ $s = mysqli_fetch_assoc($data);
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Home ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../banner-hero/banner.php">Banner</a></li>
-                <li><a href="./sambutan.php">Sambutan</a></li>
-                <li><a href="../sotk/sotk.php">SOTK</a></li>
+                <li><a href="../../home/banner-hero/banner.php">Banner</a></li>
+                <li><a href="../../home/sambutan/sambutan.php">Sambutan</a></li>
+                <li><a href="../../home/sotk/sotk.php">SOTK</a></li>
             </ul>
         </li>
         
@@ -48,9 +47,9 @@ $s = mysqli_fetch_assoc($data);
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Infografis ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../../infografis/penduduk/penduduk.php">Penduduk</a></li>
-                <li><a href="../../infografis/apbdes/apbdes.php">APBDes</a></li>
-                <li><a href="../../infografis/bansos/bansos.php">Bansos</a></li>
+                <li><a href="../penduduk/penduduk.php">Penduduk</a></li>
+                <li><a href="../apbdes/apbdes.php">APBDes</a></li>
+                <li><a href="./bansos.php">Bansos</a></li>
             </ul>
         </li>
         <li><a href="../../berita/berita.php">Berita</a></li>
@@ -97,20 +96,6 @@ $s = mysqli_fetch_assoc($data);
     </div>
 
 </div>
-
-<script src="https://cdn.tiny.cloud/1/1bs7zobfm5rqmd45xvcbj36oedbxw6ke3eyzhpp3mn7dmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-<script>
-tinymce.init({
-    selector: 'textarea[name="isi"]',
-    height: 300,
-    menubar: false,
-    plugins: 'lists link image preview code',
-    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | preview',
-    branding: false
-});
-</script>
-
 
 <!-- JS -->
 <script>

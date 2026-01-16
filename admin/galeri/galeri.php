@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-include '../../../db.php';
+include '../../db.php';
 $data = mysqli_query($conn, "SELECT * FROM sambutan WHERE status='aktif' LIMIT 1");
 $s = mysqli_fetch_assoc($data);
 ?>
@@ -14,8 +14,8 @@ $s = mysqli_fetch_assoc($data);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Sambutan</title>
-    <link rel="stylesheet" href="../../../assets/admin/style.css">
+    <title>Galeri</title>
+    <link rel="stylesheet" href="../../assets/admin/style.css">
 </head>
 <body>
 
@@ -25,22 +25,22 @@ $s = mysqli_fetch_assoc($data);
 <div class="sidebar">
     <h2>ADMIN DESA</h2>
     <ul>
-        <li><a href="../../index.php">Dashboard</a></li>
+        <li><a href="../index.php">Dashboard</a></li>
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Home ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../banner-hero/banner.php">Banner</a></li>
-                <li><a href="./sambutan.php">Sambutan</a></li>
-                <li><a href="../sotk/sotk.php">SOTK</a></li>
+                <li><a href="../home/banner-hero/banner.php">Banner</a></li>
+                <li><a href="../home/sambutan/sambutan.php">Sambutan</a></li>
+                <li><a href="../home/sotk/sotk.php">SOTK</a></li>
             </ul>
         </li>
         
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Profil Desa ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../../profil-desa/visi-misi/visimisi.php">Visi & Misi</a></li>
-                <li><a href="../../profil-desa/bagan-desa/bagandesa.php">Bagan Desa</a></li>
-                <li><a href="../../profil-desa/sejarah-desa/sejarah.php">Sejarah Desa</a></li>
+                <li><a href="../profil-desa/visi-misi/visimisi.php">Visi & Misi</a></li>
+                <li><a href="../profil-desa/bagan-desa/bagandesa.php">Bagan Desa</a></li>
+                <li><a href="../profil-desa/sejarah-desa/sejarah.php">Sejarah Desa</a></li>
             </ul>
         </li>
         
@@ -48,15 +48,15 @@ $s = mysqli_fetch_assoc($data);
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Infografis ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../../infografis/penduduk/penduduk.php">Penduduk</a></li>
-                <li><a href="../../infografis/apbdes/apbdes.php">APBDes</a></li>
-                <li><a href="../../infografis/bansos/bansos.php">Bansos</a></li>
+                <li><a href="../infografis/penduduk/penduduk.php">Penduduk</a></li>
+                <li><a href="../infografis/apbdes/apbdes.php">APBDes</a></li>
+                <li><a href="../infografis/bansos/bansos.php">Bansos</a></li>
             </ul>
         </li>
-        <li><a href="../../berita/berita.php">Berita</a></li>
-        <li><a href="../../galeri/galeri.php">Galeri</a></li>
+        <li><a href="../berita/berita.php">Berita</a></li>
+        <li><a href="./galeri.php">Galeri</a></li>
         
-        <li><a href="../../logout.php">Logout</a></li>
+        <li><a href="../logout.php">Logout</a></li>
     </ul>
 </div>
 
@@ -97,20 +97,6 @@ $s = mysqli_fetch_assoc($data);
     </div>
 
 </div>
-
-<script src="https://cdn.tiny.cloud/1/1bs7zobfm5rqmd45xvcbj36oedbxw6ke3eyzhpp3mn7dmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-<script>
-tinymce.init({
-    selector: 'textarea[name="isi"]',
-    height: 300,
-    menubar: false,
-    plugins: 'lists link image preview code',
-    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | preview',
-    branding: false
-});
-</script>
-
 
 <!-- JS -->
 <script>

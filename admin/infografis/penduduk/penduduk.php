@@ -6,15 +6,15 @@ if (!isset($_SESSION['admin'])) {
 }
 
 include '../../../db.php';
-$data = mysqli_query($conn, "SELECT * FROM sambutan WHERE status='aktif' LIMIT 1");
-$s = mysqli_fetch_assoc($data);
+$q = mysqli_query($conn, "SELECT * FROM penduduk ORDER BY id DESC LIMIT 1");
+$p = mysqli_fetch_assoc($q);
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Sambutan</title>
+    <title>Sambutan Kepala Desa</title>
     <link rel="stylesheet" href="../../../assets/admin/style.css">
 </head>
 <body>
@@ -29,9 +29,9 @@ $s = mysqli_fetch_assoc($data);
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Home ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../banner-hero/banner.php">Banner</a></li>
-                <li><a href="./sambutan.php">Sambutan</a></li>
-                <li><a href="../sotk/sotk.php">SOTK</a></li>
+                <li><a href="../../home/banner-hero/banner.php">Banner</a></li>
+                <li><a href="../../home/sambutan/sambutan.php">Sambutan</a></li>
+                <li><a href="../../home/sotk/sotk.php">SOTK</a></li>
             </ul>
         </li>
         
@@ -48,9 +48,9 @@ $s = mysqli_fetch_assoc($data);
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Infografis ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../../infografis/penduduk/penduduk.php">Penduduk</a></li>
-                <li><a href="../../infografis/apbdes/apbdes.php">APBDes</a></li>
-                <li><a href="../../infografis/bansos/bansos.php">Bansos</a></li>
+                <li><a href="./penduduk.php">Penduduk</a></li>
+                <li><a href="../apbdes/apbdes.php">APBDes</a></li>
+                <li><a href="../bansos/bansos.php">Bansos</a></li>
             </ul>
         </li>
         <li><a href="../../berita/berita.php">Berita</a></li>
@@ -66,51 +66,32 @@ $s = mysqli_fetch_assoc($data);
     <!-- TOPBAR -->
     <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <h1>Sambutan Kepala Desa</h1>
+        <h1>Penduduk</h1>
         <span>Halo, <?= $_SESSION['nama_admin']; ?></span>
     </div>
 
-    <!-- CARD FORM -->
     <div class="card">
-        <form action="./sambutan_proses.php" method="POST" enctype="multipart/form-data">
+        <form action="penduduk_proses.php" method="POST">
 
-            <input type="hidden" name="id" value="<?= $s['id'] ?? '' ?>">
+            <input type="hidden" name="id" value="<?= $p['id'] ?? '' ?>">
 
-            <label>Nama Kepala Desa</label>
-            <input type="text" name="nama_kades" value="<?= $s['nama_kades'] ?? '' ?>" required>
+            <label>Total Penduduk</label>
+            <input type="number" name="total_penduduk" required value="<?= $p['total_penduduk'] ?? '' ?>">
 
-            <label>Jabatan</label>
-            <input type="text" name="jabatan" value="<?= $s['jabatan'] ?? 'Kepala Desa' ?>">
+            <label>Kepala Keluarga</label>
+            <input type="number" name="kepala_keluarga" required value="<?= $p['kepala_keluarga'] ?? '' ?>">
 
-            <label>Foto</label>
-            <input type="file" name="foto">
-            <?php if (!empty($s['foto'])): ?>
-                <br>
-                <img src="../../../uploads/sambutan/<?= $s['foto']; ?>" width="120" style="margin-top:10px;border-radius:8px;">
-            <?php endif; ?>
+            <label>Perempuan</label>
+            <input type="number" name="perempuan" required value="<?= $p['perempuan'] ?? '' ?>">
 
-            <label>Isi Sambutan</label>
-            <textarea name="isi" rows="6" required><?= $s['isi'] ?? '' ?></textarea>
+            <label>Laki-laki</label>
+            <input type="number" name="laki_laki" required value="<?= $p['laki_laki'] ?? '' ?>">
 
-            <button type="submit" style="margin-top:15px">Simpan</button>
+            <button type="submit">Simpan Data</button>
         </form>
     </div>
 
 </div>
-
-<script src="https://cdn.tiny.cloud/1/1bs7zobfm5rqmd45xvcbj36oedbxw6ke3eyzhpp3mn7dmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-<script>
-tinymce.init({
-    selector: 'textarea[name="isi"]',
-    height: 300,
-    menubar: false,
-    plugins: 'lists link image preview code',
-    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | preview',
-    branding: false
-});
-</script>
-
 
 <!-- JS -->
 <script>

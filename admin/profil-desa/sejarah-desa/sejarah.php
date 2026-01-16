@@ -6,15 +6,16 @@ if (!isset($_SESSION['admin'])) {
 }
 
 include '../../../db.php';
-$data = mysqli_query($conn, "SELECT * FROM sambutan WHERE status='aktif' LIMIT 1");
-$s = mysqli_fetch_assoc($data);
+/* Ambil sejarah aktif */
+$q = mysqli_query($conn, "SELECT * FROM sejarah_desa WHERE status='aktif' LIMIT 1");
+$sejarah = mysqli_fetch_assoc($q);
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Sambutan</title>
+    <title>Profil desa - Sejarah</title>
     <link rel="stylesheet" href="../../../assets/admin/style.css">
 </head>
 <body>
@@ -29,18 +30,18 @@ $s = mysqli_fetch_assoc($data);
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Home ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../banner-hero/banner.php">Banner</a></li>
-                <li><a href="./sambutan.php">Sambutan</a></li>
-                <li><a href="../sotk/sotk.php">SOTK</a></li>
+                <li><a href="../../home/banner-hero/banner.php">Banner</a></li>
+                <li><a href="../../home/sambutan/sambutan.php">Sambutan</a></li>
+                <li><a href="../../home/sotk/sotk.php">SOTK</a></li>
             </ul>
         </li>
         
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Profil Desa ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="../../profil-desa/visi-misi/visimisi.php">Visi & Misi</a></li>
-                <li><a href="../../profil-desa/bagan-desa/bagandesa.php">Bagan Desa</a></li>
-                <li><a href="../../profil-desa/sejarah-desa/sejarah.php">Sejarah Desa</a></li>
+                <li><a href="../visi-misi/visimisi.php">Visi & Misi</a></li>
+                <li><a href="../bagan-desa/bagandesa.php">Bagan Desa</a></li>
+                <li><a href="./sejarah.php">Sejarah Desa</a></li>
             </ul>
         </li>
         
@@ -66,31 +67,29 @@ $s = mysqli_fetch_assoc($data);
     <!-- TOPBAR -->
     <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <h1>Sambutan Kepala Desa</h1>
+        <h1>Sejarah</h1>
         <span>Halo, <?= $_SESSION['nama_admin']; ?></span>
     </div>
 
     <!-- CARD FORM -->
     <div class="card">
-        <form action="./sambutan_proses.php" method="POST" enctype="multipart/form-data">
+        <form action="./sejarah_proses.php" method="POST" enctype="multipart/form-data" onsubmit="tinymce.triggerSave();">
 
-            <input type="hidden" name="id" value="<?= $s['id'] ?? '' ?>">
+            <input type="hidden" name="id" value="<?= $sejarah['id'] ?? '' ?>">
 
-            <label>Nama Kepala Desa</label>
-            <input type="text" name="nama_kades" value="<?= $s['nama_kades'] ?? '' ?>" required>
+            <label>Judul</label>
+            <input type="text" name="judul" value="<?= $sejarah['judul'] ?? 'Sejarah Desa' ?>" required>
 
-            <label>Jabatan</label>
-            <input type="text" name="jabatan" value="<?= $s['jabatan'] ?? 'Kepala Desa' ?>">
-
-            <label>Foto</label>
+            <label>Foto Sejarah</label>
             <input type="file" name="foto">
-            <?php if (!empty($s['foto'])): ?>
+
+            <?php if (!empty($sejarah['foto'])) : ?>
                 <br>
-                <img src="../../../uploads/sambutan/<?= $s['foto']; ?>" width="120" style="margin-top:10px;border-radius:8px;">
+                <img src="../../../uploads/sejarah/<?= $sejarah['foto']; ?>" width="150" style="margin-top:10px;border-radius:8px;">
             <?php endif; ?>
 
-            <label>Isi Sambutan</label>
-            <textarea name="isi" rows="6" required><?= $s['isi'] ?? '' ?></textarea>
+            <label>Isi Sejarah</label>
+            <textarea name="isi" required><?= $sejarah['isi'] ?? '' ?></textarea>
 
             <button type="submit" style="margin-top:15px">Simpan</button>
         </form>
@@ -98,19 +97,23 @@ $s = mysqli_fetch_assoc($data);
 
 </div>
 
-<script src="https://cdn.tiny.cloud/1/1bs7zobfm5rqmd45xvcbj36oedbxw6ke3eyzhpp3mn7dmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
-<script>
-tinymce.init({
-    selector: 'textarea[name="isi"]',
-    height: 300,
-    menubar: false,
-    plugins: 'lists link image preview code',
-    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | preview',
-    branding: false
-});
-</script>
-
+    <script src="https://cdn.tiny.cloud/1/1bs7zobfm5rqmd45xvcbj36oedbxw6ke3eyzhpp3mn7dmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+    tinymce.init({
+        selector: 'textarea[name="isi"]',
+        height: 350,
+        menubar: false,
+        plugins: 'lists link image preview code',
+        toolbar: 'undo redo | bold italic underline | bullist numlist | alignleft aligncenter alignright | link | preview',
+        branding: false,
+        setup: function (editor) {
+            editor.on('change', function () {
+                tinymce.triggerSave();
+            });
+        }
+    });
+    </script>
 
 <!-- JS -->
 <script>

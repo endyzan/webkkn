@@ -1,5 +1,16 @@
 <?php
 session_start();
+
+session_start();
+
+if (
+    !isset($_POST['csrf_token']) ||
+    !isset($_SESSION['csrf_token']) ||
+    !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+) {
+    die('Akses tidak valid (CSRF detected)');
+}
+
 include '../db.php';
 
 $username = mysqli_real_escape_string($conn, $_POST['username']);

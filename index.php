@@ -3,6 +3,10 @@ include './db.php';
 $s = mysqli_fetch_assoc(
     mysqli_query($conn, "SELECT * FROM sambutan WHERE status='aktif' LIMIT 1")
 );
+$p = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT * FROM penduduk ORDER BY id DESC LIMIT 1")
+);
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +19,6 @@ $s = mysqli_fetch_assoc(
 </head>
 <body>
 
-  <!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-left">
     <img src="./assets/img/logonew.png" alt="Logo Desa" />
@@ -25,7 +28,12 @@ $s = mysqli_fetch_assoc(
     </div>
   </div>
 
-  <div class="nav-right">
+  <!-- HAMBURGER -->
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    ☰
+  </button>
+
+  <div class="nav-right" id="navMenu">
     <ul class="nav-menu">
       <li><a href="./index.php">Home</a></li>
       <li><a href="./pages/profil-desa.php">Profil Desa</a></li>
@@ -44,6 +52,7 @@ $s = mysqli_fetch_assoc(
     </ul>
   </div>
 </nav>
+
 
 
   <!-- HERO -->
@@ -103,7 +112,7 @@ $s = mysqli_fetch_assoc(
         <h3><?= $s['nama_kades']; ?></h3>
         <small><?= $s['jabatan']; ?></small>
         <div class="sambutan-text">
-          <p><?= nl2br($s['isi']); ?></p>
+          <p><?= $s['isi']; ?></p>
         </div>
       </div>
     </div>
@@ -151,7 +160,7 @@ $s = mysqli_fetch_assoc(
     </div>
 
     <div class="sotk-more">
-      <a href="struktur-organisasi.html">📋 LIHAT STRUKTUR LEBIH LENGKAP</a>
+      <a href="./pages/sotk.php">📋 LIHAT STRUKTUR LEBIH LENGKAP</a>
     </div>
   </section>
 
@@ -168,31 +177,31 @@ $s = mysqli_fetch_assoc(
 
   <div class="administrasi-grid">
     <div class="admin-box">
-      <span class="angka">1.161</span>
+      <span class="angka"><strong><?= number_format($p['total_penduduk'] ?? 0) ?> </strong></span>
       <span class="label">Penduduk</span>
     </div>
     <div class="admin-box">
-      <span class="angka">607</span>
+      <span class="angka"><strong><?= number_format($p['laki_laki'] ?? 0) ?> </strong></span>
       <span class="label">Laki-Laki</span>
     </div>
 
     <div class="admin-box">
-      <span class="angka">309</span>
+      <span class="angka"><strong><?= number_format($p['kepala_keluarga'] ?? 0) ?> </strong></span>
       <span class="label">Kepala Keluarga</span>
     </div>
     <div class="admin-box">
-      <span class="angka">554</span>
+      <span class="angka"><strong><?= number_format($p['perempuan'] ?? 0) ?> </strong></span>
       <span class="label">Perempuan</span>
     </div>
 
-    <div class="admin-box">
+    <!-- <div class="admin-box">
       <span class="angka">97</span>
       <span class="label">Penduduk Sementara</span>
     </div>
     <div class="admin-box">
       <span class="angka">44</span>
       <span class="label">Mutasi Penduduk</span>
-    </div>
+    </div> -->
   </div>
 </section>
 
@@ -384,6 +393,11 @@ $s = mysqli_fetch_assoc(
 
 
 <script src="./assets/js/scripts.js"></script>
+<script>
+document.getElementById("hamburger").onclick = function () {
+  document.getElementById("navMenu").classList.toggle("active");
+};
+</script>
 
 </body>
 </html>
