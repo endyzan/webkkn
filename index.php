@@ -39,7 +39,9 @@ $p = mysqli_fetch_assoc(
       <li><a href="./pages/profil-desa.php">Profil Desa</a></li>
 
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle">Infografis</a>
+        <a href="#" class="dropdown-toggle">Infografis
+        <span class="arrow">▼</span>
+        </a>
         <ul class="dropdown-menu">
           <li><a href="./pages/infografis/penduduk.php">Penduduk</a></li>
           <li><a href="./pages/infografis/apbdes.php">APBDes</a></li>
@@ -393,11 +395,6 @@ $p = mysqli_fetch_assoc(
 
 
 <script src="./assets/js/scripts.js"></script>
-<script>
-document.getElementById("hamburger").onclick = function () {
-  document.getElementById("navMenu").classList.toggle("active");
-};
-</script>
 
 </body>
 </html>

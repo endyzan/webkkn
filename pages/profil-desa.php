@@ -26,35 +26,42 @@ $sejarah = mysqli_fetch_assoc($sh);
 </head>
 <body>
 
-    <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <img src="../assets/img/logonew.png" alt="Logo Desa" />
-      <div class="text">
-        <strong>Desa Brakas Dejeh</strong><br />
-        Kabupaten Bangkalan
-      </div>
+<!-- navbar -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="../assets/img/logonew.png" alt="Logo Desa" />
+    <div class="text">
+      <strong>Desa Brakas Dejeh</strong><br />
+      Kabupaten Bangkalan
     </div>
+  </div>
 
-    <div class="nav-right">
-      <ul class="nav-menu">
-        <li><a href="../index.php">Home</a></li>
-        <li><a href="./profil-desa.php">Profil Desa</a></li>
+  <!-- HAMBURGER -->
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    ☰
+  </button>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Infografis</a>
-          <ul class="dropdown-menu">
-            <li><a href="./infografis/penduduk.php">Penduduk</a></li>
-            <li><a href="./infografis/apbdes.php">APBDes</a></li>
-            <li><a href="./infografis/bansos.php">Bansos</a></li>
-          </ul>
-        </li>
+  <div class="nav-right" id="navMenu">
+    <ul class="nav-menu">
+      <li><a href="../index.php">Home</a></li>
+      <li><a href="./profil-desa.php">Profil Desa</a></li>
 
-        <li><a href="./berita.php">Berita</a></li>
-        <li><a href="./Galeri.php">Galeri</a></li>
-      </ul>
-    </div>
-  </nav>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Infografis
+        <span class="arrow">▼</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="./infografis/penduduk.php">Penduduk</a></li>
+          <li><a href="./infografis/apbdes.php">APBDes</a></li>
+          <li><a href="./infografis/bansos.php">Bansos</a></li>
+        </ul>
+      </li>
+
+      <li><a href="./berita.php">Berita</a></li>
+      <li><a href="./galeri.php">Galeri</a></li>
+    </ul>
+  </div>
+</nav>
 
   <!-- PROFIL DESA - VISI MISI -->
   <section class="profil-visimisi">
