@@ -30,7 +30,7 @@ $s = mysqli_fetch_assoc($data);
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Home ▾</a>
             <ul class="dropdown-menu">
                 <li><a href="../banner-hero/banner.php">Banner</a></li>
-                <li><a href="./sambutan.php">Sambutan</a></li>
+                <li><a href="./sambutan.php" style="background:rgba(255,255,255,0.15)">Sambutan</a></li>
                 <li><a href="../sotk/sotk.php">SOTK</a></li>
             </ul>
         </li>
@@ -55,6 +55,8 @@ $s = mysqli_fetch_assoc($data);
         </li>
         <li><a href="../../berita/berita.php">Berita</a></li>
         <li><a href="../../galeri/galeri.php">Galeri</a></li>
+        <li><a href="../../chatbot/manage.php">Chatbot</a></li>
+
         
         <li><a href="../../logout.php">Logout</a></li>
     </ul>

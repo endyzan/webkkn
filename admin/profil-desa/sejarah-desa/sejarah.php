@@ -41,7 +41,7 @@ $sejarah = mysqli_fetch_assoc($q);
             <ul class="dropdown-menu">
                 <li><a href="../visi-misi/visimisi.php">Visi & Misi</a></li>
                 <li><a href="../bagan-desa/bagandesa.php">Bagan Desa</a></li>
-                <li><a href="./sejarah.php">Sejarah Desa</a></li>
+                <li><a href="./sejarah.php" style="background:rgba(255,255,255,0.15)">Sejarah Desa</a></li>
             </ul>
         </li>
         
@@ -56,6 +56,8 @@ $sejarah = mysqli_fetch_assoc($q);
         </li>
         <li><a href="../../berita/berita.php">Berita</a></li>
         <li><a href="../../galeri/galeri.php">Galeri</a></li>
+        <li><a href="../../chatbot/manage.php">Chatbot</a></li>
+
         
         <li><a href="../../logout.php">Logout</a></li>
     </ul>
@@ -67,7 +69,7 @@ $sejarah = mysqli_fetch_assoc($q);
     <!-- TOPBAR -->
     <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <h1>Sejarah</h1>
+        <h1>Sejarah Desa</h1>
         <span>Halo, <?= $_SESSION['nama_admin']; ?></span>
     </div>
 

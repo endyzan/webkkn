@@ -31,7 +31,7 @@ $data = mysqli_query($conn, "SELECT * FROM sotk ORDER BY urutan ASC");
             <ul class="dropdown-menu">
                 <li><a href="../banner-hero/banner.php">Banner</a></li>
                 <li><a href="../sambutan/sambutan.php">Sambutan</a></li>
-                <li><a href=".sotk.php">SOTK</a></li>
+                <li><a href=".sotk.php" style="background:rgba(255,255,255,0.15)">SOTK</a></li>
             </ul>
         </li>
         
@@ -55,6 +55,8 @@ $data = mysqli_query($conn, "SELECT * FROM sotk ORDER BY urutan ASC");
         </li>
         <li><a href="../../berita/berita.php">Berita</a></li>
         <li><a href="../../galeri/galeri.php">Galeri</a></li>
+        <li><a href="../../chatbot/manage.php">Chatbot</a></li>
+
         
         <li><a href="../../logout.php">Logout</a></li>
     </ul>
@@ -66,7 +68,7 @@ $data = mysqli_query($conn, "SELECT * FROM sotk ORDER BY urutan ASC");
     <!-- TOPBAR -->
     <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <h1>SOTK</h1>
+        <h1>Manajemen SOTK</h1>
         <span>Halo, <?= $_SESSION['nama_admin']; ?></span>
     </div>
 

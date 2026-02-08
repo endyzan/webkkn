@@ -37,7 +37,7 @@ $s = mysqli_fetch_assoc($data);
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Profil Desa ▾</a>
             <ul class="dropdown-menu">
-                <li><a href="./visimisi.php">Visi & Misi</a></li>
+                <li><a href="./visimisi.php" style="background:rgba(255,255,255,0.15)">Visi & Misi</a></li>
                 <li><a href="../bagan-desa/bagandesa.php">Bagan Desa</a></li>
                 <li><a href="../sejarah-desa/sejarah.php">Sejarah Desa</a></li>
             </ul>
@@ -54,6 +54,8 @@ $s = mysqli_fetch_assoc($data);
         </li>
         <li><a href="../../berita/berita.php">Berita</a></li>
         <li><a href="../../galeri/galeri.php">Galeri</a></li>
+        <li><a href="../../chatbot/manage.php">Chatbot</a></li>
+
         
         <li><a href="../../logout.php">Logout</a></li>
     </ul>

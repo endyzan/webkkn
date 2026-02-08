@@ -14,40 +14,47 @@ $sotk = mysqli_query($conn, "
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profil Desa - Desa Brakas Dejeh</title>
+  <title>Profil Desa - Desa Brakas Dajah</title>
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
-    <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-left">
-      <img src="../assets/img/logonew.png" alt="Logo Desa" />
-      <div class="text">
-        <strong>Desa Brakas Dejeh</strong><br />
-        Kabupaten Bangkalan
-      </div>
+<!-- navbar -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="../assets/img/logonew.png" alt="Logo Desa" />
+    <div class="text">
+      <strong>Desa Brakas Dajah</strong><br />
+      Kabupaten Bangkalan
     </div>
+  </div>
 
-    <div class="nav-right">
-      <ul class="nav-menu">
-        <li><a href="../index.php">Home</a></li>
-        <li><a href="./profil-desa.php">Profil Desa</a></li>
+  <!-- HAMBURGER -->
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    ☰
+  </button>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Infografis</a>
-          <ul class="dropdown-menu">
-            <li><a href="./infografis/penduduk.php">Penduduk</a></li>
-            <li><a href="./infografis/apbdes.php">APBDes</a></li>
-            <li><a href="./infografis/bansos.php">Bansos</a></li>
-          </ul>
-        </li>
+  <div class="nav-right" id="navMenu">
+    <ul class="nav-menu">
+      <li><a href="../index.php">Home</a></li>
+      <li><a href="./profil-desa.php">Profil Desa</a></li>
 
-        <li><a href="./berita.php">Berita</a></li>
-        <li><a href="./Galeri.php">Galeri</a></li>
-      </ul>
-    </div>
-  </nav>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Infografis
+        <span class="arrow">▼</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="./infografis/penduduk.php">Penduduk</a></li>
+          <li><a href="./infografis/apbdes.php">APBDes</a></li>
+          <li><a href="./infografis/bansos.php">Bansos</a></li>
+        </ul>
+      </li>
+
+      <li><a href="./berita.php">Berita</a></li>
+      <li><a href="./galeri.php">Galeri</a></li>
+    </ul>
+  </div>
+</nav>
 
 
   <!-- BAGAN DESA -->
@@ -56,7 +63,7 @@ $sotk = mysqli_query($conn, "
 
     <h2>SOTK</h2>
     <p class="bagan-desc2">
-      Struktur Organisasi dan Tata Kerja Pemerintah Desa Brakas Dejeh
+      Struktur Organisasi dan Tata Kerja Pemerintah Desa Brakas Dajah
     </p>
       <!-- Struktur Pemerintahan Desa -->
       <div class="bagan-item2">
@@ -113,11 +120,11 @@ $sotk = mysqli_query($conn, "
       <div class="footer-col">
         <div class="footer-logo">
           <img src="../assets/img/logonew.png" alt="Logo Desa">
-          <h3>Pemerintah Desa Brakas Dejeh</h3>
+          <h3>Pemerintah Desa Brakas Dajah</h3>
         </div>
         <p>
           Jalan Langseng Dusun Empang RT.003<br>
-          Desa Brakas Dejeh, Kecamatan Modung,<br>
+          Desa Brakas Dajah, Kecamatan Modung,<br>
           Kabupaten Bangkalan<br>
           Provinsi Jawa Timur, 69166
         </p>
@@ -129,7 +136,7 @@ $sotk = mysqli_query($conn, "
         <h4>Hubungi Kami</h4>
         <ul class="footer-list">
           <li>📞 082150208664</li>
-          <li>✉️ brakasdejeh@bangkalankab.go.id</li>
+          <li>✉️ brakasDajah@bangkalankab.go.id</li>
         </ul>
 
         <div class="footer-social">
@@ -145,7 +152,7 @@ $sotk = mysqli_query($conn, "
       <div class="footer-col">
         <h4>Nomor Telepon Penting</h4>
         <ul class="footer-list">
-          <li><a href="#">Jumadi / Kades Brakas Dejeh</a></li>
+          <li><a href="#">Jumadi / Kades Brakas Dajah</a></li>
           <li><a href="#">Yayan / Ambulan Desa</a></li>
         </ul>
       </div>
@@ -164,7 +171,7 @@ $sotk = mysqli_query($conn, "
     </div>
 
     <div class="footer-bottom">
-      © 2026 Pemerintah Desa Brakas Dejeh. KKN 2025/2026.
+      © 2026 Pemerintah Desa Brakas Dajah. KKN 2025/2026.
     </div>
   </footer>
 
