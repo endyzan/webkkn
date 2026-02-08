@@ -41,7 +41,7 @@ $query = mysqli_query($conn, "SELECT * FROM bagan_desa ORDER BY id ASC");
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Profil Desa ▾</a>
             <ul class="dropdown-menu">
                 <li><a href="../visi-misi/visimisi.php">Visi & Misi</a></li>
-                <li><a href="./bagandesa.php" class="active">Bagan Desa</a></li>
+                <li><a href="./bagandesa.php" class="active" style="background:rgba(255,255,255,0.15)">Bagan Desa</a></li>
                 <li><a href="../sejarah-desa/sejarah.php">Sejarah Desa</a></li>
             </ul>
         </li>
@@ -57,6 +57,8 @@ $query = mysqli_query($conn, "SELECT * FROM bagan_desa ORDER BY id ASC");
 
         <li><a href="../../berita/berita.php">Berita</a></li>
         <li><a href="../../galeri/galeri.php">Galeri</a></li>
+        <li><a href="../../chatbot/manage.php">Chatbot</a></li>
+
         <li><a href="../../logout.php">Logout</a></li>
     </ul>
 </div>

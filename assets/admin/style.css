@@ -225,3 +225,178 @@ form button {
 form button:hover {
     background: #1e40af;
 }
+
+
+/* berita */
+/* =======================
+   KHUSUS HALAMAN BERITA
+======================= */
+
+.berita-page .berita-card {
+    cursor: default;
+}
+
+/* HEADER */
+.berita-page .berita-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.berita-page .berita-header h3 {
+    font-size: 18px;
+    color: #1e3a8a;
+}
+
+/* BUTTON TAMBAH */
+.berita-page .btn-berita {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.berita-page .btn-berita:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* SEARCH */
+.berita-page .berita-search {
+    margin-bottom: 15px;
+}
+
+.berita-page .berita-search input {
+    width: 260px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+}
+
+/* TABLE */
+.berita-page .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.berita-page .table thead {
+    background: #f1f5f9;
+}
+
+.berita-page .table th {
+    text-align: left;
+    padding: 12px;
+    color: #334155;
+    font-weight: 600;
+}
+
+.berita-page .table td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.berita-page .table tr:hover {
+    background: #f8fafc;
+}
+
+/* JUDUL */
+.berita-page .table td strong {
+    color: #1e293b;
+}
+
+/* BADGE VIEW */
+.berita-page .badge {
+    background: #e0e7ff;
+    color: #1e40af;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+/* BUTTON AKSI */
+.berita-page .btn-edit,
+.berita-page .btn-hapus {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.berita-page .btn-edit {
+    background: #22c55e;
+    color: white;
+    margin-right: 5px;
+}
+
+.berita-page .btn-edit:hover {
+    background: #16a34a;
+}
+
+.berita-page .btn-hapus {
+    background: #ef4444;
+    color: white;
+}
+
+.berita-page .btn-hapus:hover {
+    background: #dc2626;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .berita-page .berita-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .berita-page .berita-search input {
+        width: 100%;
+    }
+}
+
+
+
+/* =====================
+   BREADCRUMB BERITA
+===================== */
+.berita-page .breadcrumb {
+    font-size: 13px;
+    margin-bottom: 15px;
+    color: #64748b;
+}
+
+.berita-page .breadcrumb a {
+    text-decoration: none;
+    color: #1e40af;
+    font-weight: 500;
+}
+
+.berita-page .breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.berita-page .breadcrumb span {
+    margin: 0 6px;
+}
+
+
+.berita-page .breadcrumb i {
+    margin-right: 4px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.berita-page .breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}

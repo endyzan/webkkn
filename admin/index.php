@@ -20,7 +20,7 @@ if (!isset($_SESSION['admin'])) {
 <div class="sidebar">
     <h2>ADMIN DESA</h2>
     <ul>
-        <li><a href="./index.php">Dashboard</a></li>
+        <li><a href="./index.php" style="background:rgba(255,255,255,0.15)">Dashboard</a></li>
         <li class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown(this)">Home ▾</a>
             <ul class="dropdown-menu">
@@ -50,6 +50,8 @@ if (!isset($_SESSION['admin'])) {
         </li>
         <li><a href="./berita/berita.php">Berita</a></li>
         <li><a href="./galeri/galeri.php">Galeri</a></li>
+        <li><a href="./chatbot/manage.php">Chatbot</a></li>
+
         
         <li><a href="./logout.php">Logout</a></li>
     </ul>

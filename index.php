@@ -1,32 +1,116 @@
 <?php
 include './db.php';
+
+// Ambil data hero aktif
+$hero = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT * FROM hero WHERE status='aktif' LIMIT 1")
+);
+
 $s = mysqli_fetch_assoc(
     mysqli_query($conn, "SELECT * FROM sambutan WHERE status='aktif' LIMIT 1")
 );
 $p = mysqli_fetch_assoc(
-    mysqli_query($conn, "SELECT * FROM penduduk ORDER BY id DESC LIMIT 1")
+    mysqli_query($conn, "SELECT * FROM statistik_penduduk ORDER BY id DESC LIMIT 1")
 );
+// Ambil status penduduk (sementara & pindah)
+$status_query = mysqli_query($conn, "
+    SELECT 
+        SUM(CASE WHEN status_penduduk = 'penduduk_sementara' THEN 1 ELSE 0 END) as sementara,
+        SUM(CASE WHEN status_penduduk = 'pindah' THEN 1 ELSE 0 END) as pindah
+    FROM penduduk
+");
 
+$status = mysqli_fetch_assoc($status_query);
+
+// ========================== SOTK ====================================
+$sotk_index = mysqli_query($conn, "
+    SELECT * FROM sotk 
+    WHERE status='aktif'
+    ORDER BY urutan ASC
+    LIMIT 4
+");
+
+
+
+// ========================== berita ====================================
+// ambil 4 berita terbaru
+$berita = mysqli_query($conn, "
+  SELECT * FROM berita 
+  WHERE status='publish' 
+  ORDER BY dilihat DESC 
+  LIMIT 4
+");
+
+// ========================== banner/hero ====================================
+// Set default jika hero tidak ada
+if (!$hero) {
+    $hero = [
+        'judul' => 'Selamat Datang',
+        'subjudul' => 'Website Resmi Desa Brakas Dajah',
+        'deskripsi' => 'Sumber informasi terbaru tentang pemerintahan dan kegiatan masyarakat di Desa Brakas Dajah.',
+        'gambar' => 'hero-bg.jpeg'
+    ];
+}
+
+// ========================== apbdes ====================================
+// ambil data APBDes terbaru
+$apbdes_query = mysqli_query($conn, "
+    SELECT * FROM apbdes 
+    ORDER BY tahun DESC 
+    LIMIT 1
+");
+$apbdes = mysqli_fetch_assoc($apbdes_query);
+
+// ambil detail pendapatan APBDes
+$pendapatan_data = [];
+if ($apbdes) {
+    $pendapatan_query = mysqli_query($conn, "
+        SELECT * FROM apbdes_pendapatan 
+        WHERE apbdes_id = '{$apbdes['id']}'
+    ");
+    while($row = mysqli_fetch_assoc($pendapatan_query)) {
+        $pendapatan_data[] = $row;
+    }
+}
+
+// ambil detail belanja APBDes
+$belanja_data = [];
+if ($apbdes) {
+    $belanja_query = mysqli_query($conn, "
+        SELECT * FROM apbdes_belanja 
+        WHERE apbdes_id = '{$apbdes['id']}'
+    ");
+    while($row = mysqli_fetch_assoc($belanja_query)) {
+        $belanja_data[] = $row;
+    }
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Desa Brakas Dejeh</title>
+  <title> Desa Brakas Dajah</title>
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <nav class="navbar">
   <div class="nav-left">
-    <img src="./assets/img/logonew.png" alt="Logo Desa" />
-    <div class="text">
-      <strong>Desa Brakas Dejeh</strong><br />
-      Kabupaten Bangkalan
-    </div>
+    <a href="./index.php" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit;">
+      <img src="./assets/img/logonew.png" alt="Logo Desa" />
+
+      <div class="text">
+        <strong>Desa Brakas Dajah</strong><br />
+        Kabupaten Bangkalan
+      </div>
+    </a>
   </div>
+
 
   <!-- HAMBURGER -->
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -56,19 +140,13 @@ $p = mysqli_fetch_assoc(
 </nav>
 
 
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Selamat Datang</h1>
-      <h2>Website Resmi  Desa Brakas Dejeh</h2>
-      <p>
-        Sumber informasi terbaru tentang pemerintahan dan kegiatan
-        masyarakat di  Desa Brakas Dejeh.
-      </p>
-    </div>
-
-
+  <!-- HERO SECTION DINAMIS -->
+  <section class="hero" style="background: url('./uploads/hero/<?= htmlspecialchars($hero['gambar']) ?>') center/cover no-repeat;">
+      <div class="hero-content">
+          <h1><?= htmlspecialchars($hero['judul']) ?></h1>
+          <h2><?= htmlspecialchars($hero['subjudul']) ?></h2>
+          <p><?= htmlspecialchars($hero['deskripsi']) ?></p>
+      </div>
   </section>
 
   <!-- JELAJAHI DESA -->
@@ -110,7 +188,7 @@ $p = mysqli_fetch_assoc(
         <img src="./uploads/sambutan/<?= $s['foto']; ?>" alt="Lambang Kabupaten Bangkalan">
       </div>
       <div class="sambutan-content">
-        <h2>Sambutan Kepala Desa Brakas Dejeh</h2>
+        <h2>Sambutan Kepala Desa Brakas Dajah</h2>
         <h3><?= $s['nama_kades']; ?></h3>
         <small><?= $s['jabatan']; ?></small>
         <div class="sambutan-text">
@@ -124,42 +202,26 @@ $p = mysqli_fetch_assoc(
   <section class="sotk">
     <div class="sotk-header">
       <h2>SOTK</h2>
-      <p>Struktur Organisasi dan Tata Kerja  Desa Brakas Dejeh</p>
+      <p>Struktur Organisasi dan Tata Kerja  Desa Brakas Dajah</p>
     </div>
 
     <div class="sotk-cards">
-      <div class="sotk-card">
-        <img src="./assets/img/abdulrohman.jpeg" alt="aa" />
-        <div class="sotk-info">
-          <strong>aa</strong>
-          <span>Kaur Keuangan</span>
-        </div>
-      </div>
 
-      <div class="sotk-card">
-        <img src="./assets/img/abdulrohman.jpeg" alt="aa" />
-        <div class="sotk-info">
-          <strong>aa</strong>
-          <span>Kepala Seksi Pelayanan dan Kesejahteraan</span>
+      <?php while($row = mysqli_fetch_assoc($sotk_index)): ?>
+        <div class="sotk-card">
+          <img 
+            src="./uploads/sotk/<?= $row['foto'] ?: 'default.png'; ?>" 
+            alt="<?= $row['nama']; ?>"
+          >
+          <div class="sotk-info">
+            <strong><?= strtoupper($row['nama']); ?></strong>
+            <span><?= $row['jabatan']; ?></span>
+          </div>
         </div>
-      </div>
+      <?php endwhile; ?>
 
-      <div class="sotk-card">
-        <img src="./assets/img/abdulrohman.jpeg" alt="aa aaa" />
-        <div class="sotk-info">
-          <strong>aa aaa</strong>
-          <span>Kaur Umum dan Perencanaan</span>
-        </div>
-      </div>
-
-      <div class="sotk-card">
-        <img src="./assets/img/abdulrohman.jpeg" alt="aa" />
-        <div class="sotk-info">
-          <strong>aa</strong>
-          <span>Kasi Pemerintahan</span>
-        </div>
-      </div>
     </div>
+
 
     <div class="sotk-more">
       <a href="./pages/sotk.php">📋 LIHAT STRUKTUR LEBIH LENGKAP</a>
@@ -196,14 +258,16 @@ $p = mysqli_fetch_assoc(
       <span class="label">Perempuan</span>
     </div>
 
-    <!-- <div class="admin-box">
-      <span class="angka">97</span>
+    <div class="admin-box">
+      <span class="angka"><strong><?= number_format($status['sementara'] ?? 0) ?></strong></span>
       <span class="label">Penduduk Sementara</span>
     </div>
+
     <div class="admin-box">
-      <span class="angka">44</span>
+      <span class="angka"><strong><?= number_format($status['pindah'] ?? 0) ?></strong></span>
       <span class="label">Mutasi Penduduk</span>
-    </div> -->
+    </div>
+
   </div>
 </section>
 
@@ -216,20 +280,29 @@ $p = mysqli_fetch_assoc(
     </div>
 
     <div class="apb-right">
-      <h2>APB DESA 2025</h2>
+      <h2>APB DESA <?= isset($apbdes['tahun']) ? $apbdes['tahun'] : date('Y'); ?></h2>
       <p class="apb-desc">
         Akses cepat dan transparan terhadap APB Desa serta proyek pembangunan
       </p>
 
       <div class="apb-card">
         <span class="apb-label">Pendapatan Desa</span>
-        <strong>Rp4.254.715.300,00</strong>
+        <strong>Rp<?= isset($apbdes['pendapatan']) ? number_format($apbdes['pendapatan'], 0, ',', '.') : '0'; ?>,00</strong>
       </div>
 
       <div class="apb-card">
         <span class="apb-label">Belanja Desa</span>
-        <strong>Rp4.235.654.388,00</strong>
+        <strong>Rp<?= isset($apbdes['belanja']) ? number_format($apbdes['belanja'], 0, ',', '.') : '0'; ?>,00</strong>
       </div>
+
+      <?php if (isset($apbdes['pendapatan']) && isset($apbdes['belanja'])): ?>
+      <div class="apb-card" style="background: #f8f9fa;">
+        <span class="apb-label">Surplus/Defisit</span>
+        <strong style="color: <?= ($apbdes['pendapatan'] - $apbdes['belanja']) >= 0 ? '#2e7d32' : '#f44336'; ?>">
+          Rp<?= number_format($apbdes['pendapatan'] - $apbdes['belanja'], 0, ',', '.'); ?>,00
+        </strong>
+      </div>
+      <?php endif; ?>
 
       <a href="./pages/infografis/apbdes.php" class="apb-link">
         📊 LIHAT DATA LEBIH LENGKAP
@@ -239,71 +312,58 @@ $p = mysqli_fetch_assoc(
   </div>
 </section>
 
+
+
 <!-- BERITA DESA -->
 <section class="berita">
   <div class="berita-header">
     <h2>Berita Desa</h2>
     <p>
       Menyajikan informasi terbaru tentang peristiwa, berita terkini, dan
-      artikel-artikel jurnalistik dari Desa Brakas Dejeh
+      artikel-artikel jurnalistik dari Desa Brakas Dajah
     </p>
   </div>
 
   <div class="berita-grid">
 
     <!-- Card -->
+    <div class="berita-grid">
+
+    <?php while($b = mysqli_fetch_assoc($berita)): ?>
+    <a href="./pages/berita_detail.php?id=<?= $b['id'] ?>" style="text-decoration:none;color:inherit;">
+
     <article class="berita-card">
-      <img src="../assets/img/hero-bg.jpeg" alt="Berita Desa">
+      <img src="./uploads/berita/<?= htmlspecialchars($b['gambar']) ?>" alt="">
+
       <div class="berita-content">
-        <h3>POKDARWIS PANTAI BIRU KERSIK TERIMA BANTUAN GAZEBO DARI BANK...</h3>
-        <p>
-          Kersik – Kelompok Sadar Wisata (POKDARWIS) Pantai Biru
-          Kersik menerima bantuan 10 (sepuluh) unit gazebo dari Bank...
-        </p>
+        <h3>
+          <?= strlen($b['judul']) > 60 
+              ? substr($b['judul'],0,60).'...' 
+              : $b['judul']; ?>
+        </h3>
+
+        <p><?= substr(strip_tags($b['isi']),0,100) ?>...</p>
 
         <div class="berita-meta">
-          <span>👁 Dilihat 60 kali</span>
-          <span class="tanggal">18 Dec 2025</span>
+          <span>👁 Dilihat <?= (int)$b['dilihat'] ?> kali</span>
+          <span class="tanggal"><?= date('d M Y', strtotime($b['tanggal'])) ?></span>
         </div>
       </div>
     </article>
 
-    <article class="berita-card">
-      <img src="../assets/img/hero-bg.jpeg" alt="Berita Desa">
-      <div class="berita-content">
-        <h3>KEGIATAN GOTONG ROYONG WARGA RT.002 DESA KERSIK MELALUI BKKM RT</h3>
-        <p>
-          Kersik – Warga RT.002 Desa Kersik, Kecamatan Marang Kayu,
-          Kabupaten Kutai Kartanegara, melaksanakan kegiatan gotong royong...
-        </p>
+    </a>
+    <?php endwhile; ?>
 
-        <div class="berita-meta">
-          <span>👁 Dilihat 75 kali</span>
-          <span class="tanggal">18 Dec 2025</span>
-        </div>
-      </div>
-    </article>
+    </div>
 
-    <article class="berita-card">
-      <img src="../assets/img/hero-bg.jpeg" alt="Berita Desa">
-      <div class="berita-content">
-        <h3>RT DI DESA KERSIK TINGKATKAN PENJAGAAN KEAMANAN LINGKUNGAN</h3>
-        <p>
-          Kersik – Dalam upaya menciptakan lingkungan yang aman, tertib,
-          dan kondusif, Ketua RT bersama warga Desa Kersik...
-        </p>
-
-        <div class="berita-meta">
-          <span>👁 Dilihat 67 kali</span>
-          <span class="tanggal">18 Dec 2025</span>
-        </div>
-      </div>
-    </article>
   </div>
 
   <div class="berita-more">
-    <a href="./pages/berita.php">📰 LIHAT BERITA LEBIH BANYAK</a>
+    <a href="./pages/berita.php" class="btn-more">
+      Lihat Berita Lebih Banyak →
+    </a>
   </div>
+
 </section>
 
 <!-- PETA DESA -->
@@ -313,7 +373,7 @@ $p = mysqli_fetch_assoc(
     <div class="peta-header">
       <h2>Peta Desa</h2>
       <p>
-        Lokasi dan wilayah administratif Desa Brakas Dejeh, Kecamatan Modung,
+        Lokasi dan wilayah administratif Desa Brakas Dajah, Kecamatan Modung,
         Kabupaten Bangkalan, Jawa Timur
       </p>
     </div>
@@ -330,6 +390,10 @@ $p = mysqli_fetch_assoc(
   </div>
 </section>
 
+<!-- Include Chatbot -->
+<?php include './chatbot_interface_ai.php'; ?>
+
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-container">
@@ -338,11 +402,11 @@ $p = mysqli_fetch_assoc(
     <div class="footer-col">
       <div class="footer-logo">
         <img src="./assets/img/logonew.png" alt="Logo Desa">
-        <h3>Pemerintah Desa Brakas Dejeh</h3>
+        <h3>Pemerintah Desa Brakas Dajah</h3>
       </div>
       <p>
         Jalan Langseng Dusun Empang RT.003<br>
-        Desa Brakas Dejeh, Kecamatan Modung,<br>
+        Desa Brakas Dajah, Kecamatan Modung,<br>
         Kabupaten Bangkalan<br>
         Provinsi Jawa Timur, 69166
       </p>
@@ -354,7 +418,7 @@ $p = mysqli_fetch_assoc(
       <h4>Hubungi Kami</h4>
       <ul class="footer-list">
         <li>📞 082150208664</li>
-        <li>✉️ brakasdejeh@bangkalankab.go.id</li>
+        <li>✉️ brakasDajah@bangkalankab.go.id</li>
       </ul>
 
       <div class="footer-social">
@@ -370,7 +434,7 @@ $p = mysqli_fetch_assoc(
     <div class="footer-col">
       <h4>Nomor Telepon Penting</h4>
       <ul class="footer-list">
-        <li><a href="#">Jumadi / Kades Brakas Dejeh</a></li>
+        <li><a href="#">Jumadi / Kades Brakas Dajah</a></li>
         <li><a href="#">Yayan / Ambulan Desa</a></li>
       </ul>
     </div>
@@ -389,7 +453,7 @@ $p = mysqli_fetch_assoc(
   </div>
 
   <div class="footer-bottom">
-    © 2026 Pemerintah Desa Brakas Dejeh. KKN 2025/2026.
+    © <?= date('Y'); ?> Pemerintah Desa Brakas Dajah. KKN 2025/2026.
   </div>
 </footer>
 

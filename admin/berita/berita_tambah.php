@@ -15,6 +15,8 @@ $data = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berita</title>
     <link rel="stylesheet" href="../../assets/admin/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 </head>
 <body>
 
@@ -60,13 +62,28 @@ $data = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
 </div>
 
 <!-- MAIN -->
-<div class="main">
+<div class="main berita-page">
 
+    
     <!-- TOPBAR -->
     <div class="topbar">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <h1>Berita</h1>
+        <h1>Tambah Berita</h1>
         <span>Halo, <?= $_SESSION['nama_admin']; ?></span>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="../index.php">
+            <i class="bi bi-house-door-fill"></i>
+        </a>
+        <span>/</span>
+        <a href="./berita.php">
+            Berita
+        </a>
+        <span>/</span>
+        <a href="./berita_tambah.php">
+            Tambah Berita
+        </a>
     </div>
 
     <!-- CARD FORM -->
@@ -82,11 +99,30 @@ $data = mysqli_query($conn, "SELECT * FROM berita ORDER BY id DESC");
         <input type="file" name="gambar" required>
 
         <button type="submit">Simpan</button>
+        <a href="berita.php">Batal</a>
+
         </form>
 
     </div>
 
 </div>
+
+<script src="https://cdn.tiny.cloud/1/1bs7zobfm5rqmd45xvcbj36oedbxw6ke3eyzhpp3mn7dmrju/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+tinymce.init({
+    selector: 'textarea[name="isi"]',
+    height: 300,
+    menubar: false,
+    plugins: 'lists link image preview code',
+    toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist | link | preview',
+    branding: false,
+    setup: function (editor) {
+        editor.on('change', function () {
+            tinymce.triggerSave(); // PENTING
+        });
+    }
+});
+</script>
 
 <!-- JS -->
 <script>
